@@ -1,0 +1,97 @@
+<div class="product-nav">
+    <!--search -->
+    <div class="product-search">
+        <form action="{:U('Search/index')}" method="GET">
+            <input type="search" placeholder="{:L(Searcha)}..." name="keyword">
+            <input type="hidden" name="module" value="Product">
+            <button type="submit">
+                <i class="iconfont icon-sw_sousuo"></i>
+            </button>
+        </form>
+    </div>
+    <div class="menu">
+        <h3>{:L(Categorys)}</h3>
+        <div class="sidebar-nav">
+            <ul class="first-nav">
+                <li><a href="/index.php?l={$Think.LANG_SET}">{:L(HOME_FONT)}</a></li>
+                {if $Think.LANG_SET==en}
+                <YP:subcat catid="73" id="r" where="listorder asc" limit="100" key="n">
+                            <if condition="$r[ismenu]==1">
+                    <li>
+                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}" title="{$r.catname}">{$r.catname}
+                            {if $r[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                        {if $r[child] == 1}
+                        <ul class="second-nav">
+                            <YP:subcat catid="$r[id]" id="rs">
+                                <li>
+                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}" title="{$rs.catname}">{$rs.catname} {if $rs[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                                    {if $rs[child] == 1}
+                                    <ul class="three_nav">
+                                        <YP:subcat catid="$rs[id]" id="rss">
+                                            <li><a href="{$rss.url}" title="{$rss.catname}">{$rss.catname}</a></li>
+                                        </YP:subcat>
+                                    </ul>
+                                    {/if}
+                                </li>
+                            </YP:subcat>
+                        </ul>
+                        {/if}
+                    </li>
+                            </if>
+                </YP:subcat>
+                {else}
+                <YP:subcat catid="151" id="r" where="listorder asc" limit="100" key="n">
+                    <li>
+                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}" title="{$r.catname}">{$r.catname}
+                            {if $r[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                        {if $r[child] == 1}
+                        <ul class="second-nav">
+                            <YP:subcat catid="$r[id]" id="rs">
+                                <li>
+                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}" title="{$rs.catname}">{$rs.catname} {if $rs[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                                    {if $rs[child] == 1}
+                                    <ul class="three_nav">
+                                        <YP:subcat catid="$rs[id]" id="rss">
+                                            <li><a href="{$rss.url}" title="{$rss.catname}">{$rss.catname}</a></li>
+                                        </YP:subcat>
+                                    </ul>
+                                    {/if}
+                                </li>
+                            </YP:subcat>
+                        </ul>
+                        {/if}
+                    </li>
+                </YP:subcat>
+                {/if}
+            </ul>
+        </div>
+    </div>
+    <div class="hot">
+        <h3>{:L(HOTPRODUCT)}</h3>
+        <div class="aside-product">
+            {if $Think.LANG_SET==en}
+            <YP:list name='product' posid="1" order="listorder desc" limit="5" id="r" where="lang=1" field="title,thumb,url">
+                <!-- start -->
+                <a href="{$r.url}" title="{$r.title}" class="media">
+                    <div class="box-img">
+                        <img src="{$r.thumb}" alt="{$r.title}">
+                    </div>
+                    <p>{$r.title|str_cut=###,25}</p>
+                </a>
+                <!-- end -->
+            </YP:list>
+            {else}
+            <YP:list name='product' posid="1" order="listorder desc" limit="5" id="r" where="lang=2" field="title,thumb,url">
+                <!-- start -->
+                <a href="{$r.url}" title="{$r.title}" class="media">
+                    <div class="box-img">
+                        <img src="{$r.thumb}" alt="{$r.title}">
+                    </div>
+                    <p>{$r.title|str_cut=###,25}</p>
+                </a>
+                <!-- end -->
+            </YP:list>
+            {/if}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={:C('DEFAULT_CHARSET')}" />
+<title>{:L('welcome')}{:L('system_name')}</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Css/style.css" />
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery.min.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/iframeTools.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery.form.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery.validate.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/MyDate/WdatePicker.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery.colorpicker.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/my.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/swfupload.js"></script>
+
+    <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"></meta>
+<script language="JavaScript">
+<!--
+var ROOT =	 '__ROOT__';
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+function confirm_delete(url){
+	art.dialog.confirm("{:L('real_delete')}", function(){location.href = url;});
+}
+$(window.parent.$("#main_loading").hide());
+//-->
+</script>
+</head>
+<body width="100%">
+<div id="result" class="result none"></div>
+<div class="mainbox">
+
+<if condition="empty($_GET['isajax'])">
+
+	<div id="nav" class="mainnav_title" {if MODULE_NAME=='Product'}style='height:81px;'{/if}>
+
+	<div id="lang">
+	<if condition="APP_LANG">
+		<?php
+		parse_str($_SERVER['QUERY_STRING'],$urlarr);
+		unset($urlarr[l]);
+		$url='index.php?'.http_build_query($urlarr);
+                foreach($Lang as $k=>$v){
+                     $arrlang[] =$v['mark'];
+                }
+                     $strlang = implode(',',$arrlang);
+		?>
+		<volist name="Lang" id="langvo">
+			<a href="{$url}&l={$langvo.mark}" <if condition="$langvo[mark]==$_SESSION['YP_lang']"> class="on"</if>>{$langvo.name}</a>
+		</volist>    
+{if in_array($action_name,array('edit')) && $m !='Category'}
+<style>
+    .goog-te-banner-frame{display: none !important;}
+</style>
+<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: '<?php echo $strlang;?>', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+{/if}
+	</if>
+	</div>
+	<ul>
+            {if MODULE_NAME=='Message'}
+            <a href="javascript:;" onclick='portexcel();'>导出excel</a>|
+                <input type="hidden" name="ep" id='ep' value="{if $p}{$p}{else}1{/if}">
+                <input type="hidden" name="elistRows" id='elistRows' value="{if $listRows}{$listRows}{else}15{/if}">
+                <input type="hidden" name="em" id='em' value="{$m['name']}">
+                <input type="hidden" name="emid" id='emid' value="{$m['id']}">
+                <script>
+
+                            function portexcel(){
+                                    var ep = $('#ep').val();
+                                    var listRows = $("select[name='listRows']").val();
+                                    if(!listRows){
+                                        listRows = $('#elistRows').val();
+                                    }
+                                    var title = $('#title').val();
+                                    var status = $('#status').val();
+                                    var em = $('#em').val();
+                                    var emid = $('#emid').val();
+                                    window.location.href="/index.php?g=Home&a=getExcel&ep="+ep+'&listRows='+listRows+'&title='+title+'&status='+status+'&em='+em+'&emid='+emid;
+
+                                    //alert(ep+'|'+listRows+'|'+title+'|'+status+'|'+em);
+                            }
+
+                          
+                </script>
+            {/if}
+            <a href="{:U($nav[bnav][model].'/'.$nav[bnav][action],$nav[bnav][data])}">{$nav.bnav.name}</a>|
+	<volist name="nav.nav" id="vonav" key="n">
+
+	<if condition="$vonav[data][isajax]">
+        {if $n>1}|{/if}<a href="javascript:void(0);" onclick="openwin('{$vonav[action]}','{:U($vonav[model].'/'.$vonav[action],$vonav[data])}','{$vonav.name}',600,440)">{$vonav.name}</a>
+	<else />
+	    {if $n>1}|{/if}<a href="{:U($vonav[model].'/'.$vonav[action],$vonav[data])}">{$vonav.name}</a>
+	</if>
+	</volist></ul>
+{if MODULE_NAME=='Product'}
+        <?php
+                $enpwhere =array();
+                $enpwhere['lang'] = 0;
+                $enpwhere['module'] = "Product";
+                $enpwhere['child'] = 0;
+$enprocates  = M('category')->field('id,module,catname')->where($enpwhere)->order('id asc')->select();
+//print_r($enprocates);
+?>
+<div class='formcopy'>
+           选择  
+        {if $_SESSION['YP_lang']}
+                          语种
+                          <select id='cLang'>
+               <option value="">选择语种</option>
+                <volist name="Lang" id="r" key="n">
+               <option value="{$r.id}">{$r.name}({$r.id})</option>
+                </volist>
+            </select> 
+                   栏目
+            <select id='catid'>
+               <option value="" rel=''>选择栏目</option>  
+            </select> 
+        {else}
+            栏目
+            <select id='catid'>
+               <option value="" rel=''>选择栏目</option>
+                <volist name="enprocates" id="r" key="n">
+               <option value="{$r.id}" rel='{$r.module}'>{$r.catname}({$r.id})</option>
+                </volist>  
+            </select>
+        {/if}
+           复制到
+        {if $_SESSION['YP_lang']}
+                    语种
+                          <select id='cLang2'>
+               <option value="">选择语种</option>
+                <volist name="Lang" id="r" key="n">
+               <option value="{$r.id}">{$r.name}({$r.id})</option>
+                </volist>      
+            </select>
+                   栏目
+            <select id='catid2'>
+               <option value="" rel=''>选择栏目</option>     
+            </select>  
+        {else}
+            栏目
+            <select id='catid2'>
+               <option value="" rel=''>选择栏目</option>
+                <volist name="enprocates" id="r" key="n">
+               <option value="{$r.id}" rel='{$r.module}'>{$r.catname}({$r.id})</option>
+                </volist>  
+            </select>
+        {/if}
+            <span onclick="copypro();" style='padding:4px 13px;background: #1caf9a;color: #fff;cursor: pointer;'>确定复制</span>
+ <script>
+$("#cLang").change(function(){
+        var cLang = $(this).val();
+        if(cLang){
+                $.ajax({
+                     type:"POST",
+                     url:'/index.php?g=Home&a=getLangCate',
+                     data:'cLang='+cLang,
+                     dataType:'json',
+                     success:function(res){
+var tbody = "";
+var obj = res.enprocates;
+$.each(obj, function (n, value) {
+               var trs = "";
+               trs += "<option value='" + value.id +"' rel='"+ value.module +"'>" + value.catname +"("+ value.id+ ")</option>";
+               tbody += trs;
+           });
+$("#catid").append(tbody); 
+                     }
+                   }); 
+        }
+});
+$("#cLang2").change(function(){
+        var cLang = $(this).val();
+        if(cLang){
+                $.ajax({
+                     type:"POST",
+                     url:'/index.php?g=Home&a=getLangCate',
+                     data:'cLang='+cLang,
+                     dataType:'json',
+                     success:function(res){
+var tbody = "";
+var obj = res.enprocates;
+$.each(obj, function (n, value) {
+               var trs = "";
+               trs += "<option value='" + value.id +"' rel='"+ value.module +"'>" + value.catname +"("+ value.id+ ")</option>";
+               tbody += trs;
+           });
+$("#catid2").append(tbody); 
+                     }
+                   }); 
+        }
+});
+function copypro(){
+var cLang = $('#cLang2').val();
+var catid = $('#catid').val();
+var catid2 = $('#catid2').val();
+//alert(cLang);
+//alert(catid);
+//alert(catid2);
+//return false;
+if(catid && catid2){
+                    $.ajax({
+                     type:"POST",
+                     url:'/index.php?g=Home&a=CopyProduct',
+                     data:'catid='+catid+'&catid2='+catid2+'&cLang='+cLang,
+                     dataType:'json',
+                     success:function(res){
+//                         $('.focusBox').html(res.str);
+                         alert(res.str);
+                     }
+                   }); 
+}else{
+       alert('请确认选择栏目');
+}
+    
+}
+</script>                        
+</div>
+{/if}
+	</div>
+    <script>
+	var onurl ='?{$_SERVER["QUERY_STRING"]}';
+	jQuery(document).ready(function(){
+		$('#nav ul a ').each(function(i){
+		if($('#nav ul a').length>1){
+			var thisurl= $(this).attr('href');
+			thisurl = thisurl.replace('&menuid={:cookie("menuid")}','');
+			if(onurl.indexOf(thisurl) == 0 ) $(this).addClass('on').siblings().removeClass('on');
+		}else{
+			$('#nav').hide();
+		}
+		});
+		if($('#nav ul a ').hasClass('on')==false){
+		$('#nav ul a ').eq(0).addClass('on');
+		}
+	});
+	</script>
+</if>

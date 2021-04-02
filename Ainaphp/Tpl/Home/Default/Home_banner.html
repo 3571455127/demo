@@ -1,0 +1,39 @@
+    <div class="bgimages">
+        <div class="box-img">
+            {if $Categorys[$catid][image]}
+            <img class="lazy" src="{$Categorys[$catid][image]}" alt="banner">
+            {else}
+            {if $Categorys[$bcid][image]}
+            <img class="lazy" src="{$Categorys[$bcid][image]}" alt="banner">
+            {else}
+            <img
+                class="lazy" data-original="/Public/www/images/product-bg.png" src="images/loading.gif" alt="">
+            {/if}
+            {/if}
+        </div>
+    </div>
+
+    <div
+      class="bg-banner"
+      style="
+        background: url(
+ {if $Categorys[$catid][image]}
+{$Categorys[$catid][image]}
+{else}
+{if $Categorys[$bcid][image]}
+{$Categorys[$bcid][image]}
+{else}
+/Public/www/images/product-bg.jpg
+{/if}
+{/if}
+        ) no-repeat;
+        background-size: cover;
+        background-position: center center;
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <h3>{$Categorys[$catid][catname]}</h3>
+        </div>
+      </div>
+    </div>

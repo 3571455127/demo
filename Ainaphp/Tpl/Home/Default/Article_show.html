@@ -1,0 +1,138 @@
+<include file="Home:path" />
+
+<!-- news-show -->
+<div class="news-show">
+    <div class="container">
+        <div class="row">
+            <div class="content clearfix">
+                <div class="left col-lg-8 col-md-8 col-sm-8">
+                    {$content}
+
+                    <!-- 推荐 -->
+                    <div class="news-rea clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-6 clearfix">
+                            <i class="fa fa-chevron-left"></i>
+                            <yp:next msg="" />
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 clearfix">
+                            <i class="fa fa-chevron-right"></i>
+                            <yp:pre msg="" />
+
+                        </div>
+                        <yp:pre msg="" />
+                    </div>
+
+                    <!-- form -->
+                    <form name="form" method="post" onsubmit="return beforeSubmit2(this);"
+                        action="index.php?g=Home&a=message">
+                        <h5>Leave a comment</h5>
+                        <div class="box clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6"> <input type="text" name="name" id=""
+                                    placeholder="Your Name"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6"><input type="text" name="email" id=""
+                                    placeholder="Your Email"></div>
+                        </div>
+                        <input type="text" name="phone" id="" placeholder="Your Phone">
+                        <textarea placeholder="Your Message" name="message" id="" cols="30" rows="10"></textarea>
+                        <div class="text-center">
+                            <input type="submit" value="Submit Form" class="submit-btn">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="right col-lg-4 col-md-4 col-sm-4">
+                    <!-- search -->
+                    <form action="/Search/index.html" method="GET">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Search" type="text" name="keyword">
+                                <input type="hidden" name="module" value="Product">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+
+                    <div class="hots">
+                        <h3>Popular Posts</h3>
+                        <YP:list order="listorder desc" catid="111" field="*" id="r" posid="1" limit="5">
+                            <!-- start -->
+                            <a href="{$r.url}" title="{$r.title}" class="clearfix">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><img src="{$r.thumb}" alt="{$r.title}">
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                    <div class="times"> {$r.createtime|toDate=###,'d'} {$r.createtime|toDate=###,'M'}
+                                        {$r.createtime|toDate=###,'Y'}</div>
+                                    <h6>{$r.title|str_cut=###,35,'...'}</h6>
+                                </div>
+                            </a>
+                            <!-- end -->
+                        </YP:list>
+
+                    </div>
+                    <!--
+                        <div class="hots categories">
+                            <h3> Categories</h3>
+
+                             start 
+                            <a href="" title="" class="clearfix">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"> Engine Diagnostics </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">(05)</div>
+                            </a>
+                             end 
+
+                            <a href="" title="" class="clearfix">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"> Lube, Oil and Filters </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">(06)</div>
+                            </a>
+                            <a href="" title="" class="clearfix">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"> Air Conditioning Evac </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">(11)</div>
+                            </a>
+                            <a href="" title="" class="clearfix">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"> Anti-Lock Brake Service </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">(09)</div>
+                            </a>
+
+                        </div>-->
+
+                    <!--                        <div class="hots categories">
+                            <h3> Archives</h3>
+
+                             start 
+                            <a href="" title="" class="clearfix">Feburay 2019</a>
+                             end 
+
+                            <a href="" title="" class="clearfix">Jan 2019</a>
+                            <a href="" title="" class="clearfix">December 2018</a>
+                            <a href="" title="" class="clearfix">November 2018</a>
+                            <a href="" title="" class="clearfix">October 2018</a>
+
+                        </div>-->
+
+                    <!--                        <div class="hots categories">
+                            <h3> Tags</h3>
+
+                            <ul class="unstyled clearfix">
+                                <li><a href="#" title="">Construction</a></li>
+                                <li><a href="#" title="">Design</a></li>
+                                <li><a href="#" title="">Project</a></li>
+                                <li><a href="#" title="">Building</a></li>
+                                <li><a href="#" title="">Contracting</a></li>
+                                <li><a href="#" title="">Safety</a></li>
+                                <li><a href="#" title="">Planning</a></li>
+                            </ul>
+
+                        </div>-->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

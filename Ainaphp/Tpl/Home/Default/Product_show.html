@@ -1,0 +1,278 @@
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e65b5d53a9fd537"></script>
+<include file="Home:path" />
+
+<div class="product-show">
+    <div class="container">
+        <div class="row">
+            <div class="clearfix">
+                <div class="col-lg-3 col-md-3">
+                    <!-- search -->
+                    <div class="product-search">
+                        <form action="{:U('Search/index')}" method="GET">
+                            <input type="search" placeholder="{:L(Searcha)}..." name="keyword">
+                            <input type="hidden" name="module" value="Product">
+                            <button type="submit">
+                                <i class="iconfont icon-sw_sousuo"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- nav -->
+                    <div class="nav-right">
+                        <div class="sidebar-nav" id="icos">
+                            <ul class="first-nav">
+                                <li><a href="/index.php?l={$Think.LANG_SET}">{:L(HOME_FONT)}</a></li>
+
+                                {if $Think.LANG_SET==en}
+                                <YP:subcat catid="73" id="r" where="listorder asc" limit="100" key="n">
+                                    <li>
+                                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}"
+                                            title="{$r.catname}">{$r.catname} {if $r[child] == 1}<i
+                                                class="iconfont icon-angle-right"></i>{/if}</a>
+                                        {if $r[child] == 1}
+                                        <ul class="second-nav">
+                                            <YP:subcat catid="$r[id]" id="rs">
+                                                <li>
+                                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}"
+                                                        title="{$rs.catname}">{$rs.catname} {if $rs[child] == 1}<i
+                                                            class="iconfont icon-angle-right"></i>{/if}</a>
+                                                    {if $rs[child] == 1}
+                                                    <ul class="three_nav">
+                                                        <YP:subcat catid="$rs[id]" id="rss">
+                                                            <li><a href="{$rss.url}"
+                                                                    title="{$rss.catname}">{$rss.catname}</a></li>
+                                                        </YP:subcat>
+                                                    </ul>
+                                                    {/if}
+                                                </li>
+                                            </YP:subcat>
+                                        </ul>
+                                        {/if}
+                                    </li>
+                                </YP:subcat>
+                                {else}
+                                <YP:subcat catid="151" id="r" where="listorder asc" limit="100" key="n">
+                                    <li>
+                                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}"
+                                            title="{$r.catname}">{$r.catname} {if $r[child] == 1}<i
+                                                class="fa fa-angle-right"></i>{/if}</a>
+                                        {if $r[child] == 1}
+                                        <ul class="second-nav">
+                                            <YP:subcat catid="$r[id]" id="rs">
+                                                <li>
+                                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}"
+                                                        title="{$rs.catname}">{$rs.catname} {if $rs[child] == 1}<i
+                                                            class="fa fa-angle-right"></i>{/if}</a>
+                                                    {if $rs[child] == 1}
+                                                    <ul class="three_nav">
+                                                        <YP:subcat catid="$rs[id]" id="rss">
+                                                            <li><a href="{$rss.url}"
+                                                                    title="{$rss.catname}">{$rss.catname}</a></li>
+                                                        </YP:subcat>
+                                                    </ul>
+                                                    {/if}
+                                                </li>
+                                            </YP:subcat>
+                                        </ul>
+                                        {/if}
+                                    </li>
+                                </YP:subcat>
+                                {/if}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- hot   -->
+                    <div class="hot">
+
+                        {if $Think.LANG_SET==en}
+                        <YP:list name='product' posid="1" order="listorder asc" where="lang=1" limit="5" id="r"
+                            field="title,thumb,url">
+
+                            <!-- statr -->
+                            <a href="{$r.url}" title="{$r.title}" class="clearfix">
+                                <div class="box-img col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <img src="{$r.thumb}" alt="{$r.title}">
+                                </div>
+                                <div class="title col-lg-8 col-md-8 col-sm-8 col-xs-8">{$r.title|str_cut=###,25,'...'}
+                                </div>
+                            </a>
+                            <!-- end -->
+                        </YP:list>
+                        {else}
+                        <YP:list name='product' posid="1" order="listorder asc" where="lang=2" limit="5" id="r"
+                            field="title,thumb,url">
+
+                            <!-- statr -->
+                            <a href="{$r.url}" title="{$r.title}" class="clearfix">
+                                <div class="box-img col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <img src="{$r.thumb}" alt="{$r.title}">
+                                </div>
+                                <div class="title col-lg-8 col-md-8 col-sm-8 col-xs-8">{$r.title|str_cut=###,25,'...'}
+                                </div>
+                            </a>
+                            <!-- end -->
+                        </YP:list>
+                        {/if}
+                    </div>
+
+                </div>
+
+                <div class="col-lg-9 col-md-9">
+                    <div class="sw clearfix">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="swiper-container gallery-top">
+                                <div class="swiper-wrapper">
+                                    <volist name='pic' id='r' offset='0' length='5'>
+                                        <!-- start -->
+                                        <div class="swiper-slide">
+                                            <img src="{$r.filepath}"  alt="{$r.filename}">
+                                        </div>
+                                        <!-- end -->
+                                    </volist>
+
+                                </div>
+
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-container gallery-thumbs">
+                                <div class="swiper-wrapper">
+                                    <volist name='pic' id='r' offset='0' length='5'>
+                                        <!-- start -->
+                                        <div class="swiper-slide">
+                                            <img src="{$r.filepath}" alt="{$r.filename}">
+                                        </div>
+                                        <!-- end -->
+                                    </volist>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="txt col-lg-5 col-md-5">
+                            <h5>{$title}</h5>
+                            <div class="content">
+                                {$jianjie}
+                                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                <div class="addthis_inline_share_toolbox_6d2h"></div>
+                            </div>
+
+                            <a href="/contact.html" title="contact" class="pro-contact">{:L(CONTACT_US)}</a>
+                        </div>
+                    </div>
+
+                    <!-- 内容 -->
+                    <div class="pro-content">
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#home" aria-controls="home"
+                                    data-toggle="tab">{:L(ProductDetails)}</a></li>
+                            <li><a href="#profile" aria-controls="profile" data-toggle="tab">{:L(Video)}</a>
+                            </li>
+                            <li><a href="#messages" aria-controls="messages" data-toggle="tab">{:L(Inquiry)}</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="home">
+                                {$content}
+                                {$pages}
+                            </div>
+
+                            <div class="tab-pane" id="profile">
+                                {$parameter}
+                            </div>
+                            <div class="tab-pane" id="messages">
+
+                                <form class="clearfix" method="post" action="index.php?g=Home&amp;a=message"
+                                    onsubmit="return beforeSubmit2(this);">
+                                    <input name="forward" type="hidden"
+                                        value="{$_SERVER['SERVER_NAME']}{if $catid}/index.php?m={$Categorys[$catid]['module']}&a=index&id={$catid}{else}/index.php{/if}" />
+                                    <input type="hidden" name="lang" value="{$Think.LANG_SET}">
+                                    <div class="box clearfix">
+                                        <div class="col-lg-3 col-md-3">{:L(Namea)}<span>*</span> :</div>
+                                        <div class="col-lg-9"> <input class="form-control" placeholder="{:L(Namea)}"
+                                                type="text" name="name"></div>
+                                    </div>
+                                    <div class="box clearfix">
+                                        <div class="col-lg-3">{:L(Emaila)}<span>*</span> :</div>
+                                        <div class="col-lg-9"><input class="form-control" placeholder="{:L(Emaila)}"
+                                                type="text" name="email"></div>
+                                    </div>
+                                    <div class="box clearfix">
+                                        <div class="col-lg-3">{:L(Phonea)}<span>*</span> :</div>
+                                        <div class="col-lg-9"> <input class="form-control" placeholder="{:L(Phonea)}"
+                                                type="text" name="phone"></div>
+                                    </div>
+                                    <div class="box clearfix">
+                                        <div class="col-lg-3">{:L(messagea)}<span>*</span> :</div>
+                                        <div class="col-lg-9"> <textarea class="form-control" rows="3" name="message"
+                                                placeholder="{:L(messagea)} ..."></textarea></div>
+                                    </div>
+                                    <div class="box clearfix">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-9"> <input type="submit" value="{:L(SendInquiry)}"
+                                                class="footer-sub"></div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 推荐-->
+                    <div class="pro-related">
+                        <h5>{:L(RelatedProducts)}</h5>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+
+
+
+                                {if $Think.LANG_SET==en}
+                                <YP:list name='product' posid="1" order="listorder asc" limit="5" where="lang=1" id="r"
+                                    field="title,thumb,url">
+                                    <!-- start -->
+                                    <div class="swiper-slide">
+                                        <a href="{$r.url}" title="{$r.title}">
+                                            <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                            <h6>{$r.title}</h6>
+                                        </a>
+                                    </div>
+                                    <!-- end -->
+                                </YP:list>
+                                {else}
+                                <YP:list name='product' posid="1" order="listorder asc" limit="5" where="lang=2" id="r"
+                                    field="title,thumb,url">
+                                    <!-- start -->
+                                    <div class="swiper-slide">
+                                        <a href="{$r.url}" title="{$r.title}">
+                                            <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                            <h6>{$r.title}</h6>
+                                        </a>
+                                    </div>
+                                    <!-- end -->
+                                </YP:list>
+                                {/if}
+                            </div>
+                        </div>
+                        <div class="pro-button">
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>

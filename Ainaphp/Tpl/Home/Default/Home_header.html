@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="{$seo_keywords}" />
+    <meta name="description" content="{$seo_description}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <!-- wap -->
+    <meta name="wap-font-scale" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="Robots" content="all">
+    <link rel="alternate" href="https://www.yige-tech.com/" hreflang="en" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>{if MODULE_NAME != 'Index'}{if $seotitle}{$seotitle}{else}{$seo_title}{/if}{else}{$site_name}{/if}</title>
+    <!-- css -->
+    <link rel="stylesheet" href="__PUBLIC__/www/css/iconfont-yizumi.css">
+    <link rel="stylesheet" href="__PUBLIC__/www/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/www/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/www/css/main.css">
+    <script src="__PUBLIC__/www/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- header start -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-full">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">{:L(Toggle_navigation)}</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.php"><img alt="logo" src="__PUBLIC__/www/images/logo.png"></a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="{if MODULE_NAME == 'Index'}active{/if}"><a href="/index.php">{:L(HOME_FONT)}</a></li>
+                        <!--                        <li>
+                            <a href="product-list.html">Company </a>
+                        </li>
+                        <li>
+                            <a href="">Technology </a>
+                        </li>-->
+                        <YP:subcat catid="0" id="r" field="*" where="listorder asc" limit="100" key="n">
+                            <if condition="$r[ismenu]==1">
+                                <li class="{if $bcid==$r[id]}active{/if}">
+                                    <a href="{$r.url}" title="{$r.catname}">{$r.catname}
+                                        {if in_array($r[id],array(114,121))}<i
+                                            class="iconfont icon-angle-down"></i>{/if}
+                                    </a>
+                                    {if in_array($r[id],array(114,121))}
+                                    {if $r[child] == 1}
+                                    <ul class="second-nav">
+                                        <YP:subcat catid="$r[id]" field="*" where="listorder asc" id="rs">
+                                            <if condition="$rs[ismenu]==1">
+                                                <li><a href="{$rs.url}" title="{$rs.catname}">{$rs.catname}</a></li>
+                                                <?php if($rs[child]==1){?>
+                              <span class="arrow-three"><i></i></span>
+                              <ul class="three">
+                                  <YP:subcat catid="$rs[id]" field="*" where="listorder asc" id="rss">
+                                   <?php if($rss[ismenu]==1){?>
+                                <li><a href="{$rss.url}" title="{$rss.catname}">{$rss.catname}</a></li>
+                                    <?php }?>
+                                </YP:subcat>
+                              </ul>
+                              <?php }?>
+                                            </if>
+                                        </YP:subcat>
+                                    </ul>
+                                    {/if}
+                                    {/if}
+                            </if>
+                        </YP:subcat>
+                    </ul>
+                    <div class="share navbar-left">
+                        <ul class="clearfix">
+                            <li><a class="facebook" href="https://www.facebook.com/YizumiRubberMachinery"
+                                    target="_blank">
+                                    <i class="iconfont icon-facebook"></i>
+                                </a></li>
+                            <li><a class="youtube"
+                                    href="https://www.youtube.com/channel/UC6BVdP-i_cS5IpRdr6HPiBg?view_as=subscriber"
+                                    target="_blank">
+                                    <i class="iconfont icon-youtube"></i>
+                                </a></li>
+                            <li class="language">
+                                <i class="iconfont icon-diqiu"></i>
+                                <div class="language-box">
+                                    <a href="/en">English</a>
+                                    <a href="/it">Italiano</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+
+        <!-- wap-nav -->
+        <div class="wap-nav">
+            <div class="bg">
+                <div class="bg_l">
+                </div>
+                <div class="nav_right">
+                    <div class="nav_rin">
+                        <ul class="menu_ul">
+                            <li><a href="/index.php" title="">{:L(HOME_FONT)}</a></li>
+                            <YP:subcat catid="0" id="r" field="*" where="listorder asc" limit="100" key="n">
+                                <if condition="$r[ismenu]==1">
+                                    <li class="{if $bcid==$r[id]}active{/if} menu_li">
+                                        <a href="{$r.url}" class="menu_a">{$r.catname}</a>
+                                        {if in_array($r[id],array(114,121))}
+                                        <span class="arrow"><i></i></span>
+                                        <ul class="mt_ul">
+                                            <YP:subcat catid="$r[id]" field="*" where="listorder asc" id="rs">
+                                                <if condition="$rs[ismenu]==1">
+                                                    <li><a href="{$rs.url}">{$rs.catname}</a></li>
+                                                </if>
+                                            </YP:subcat>
+                                        </ul>
+                                        {/if}
+                                    </li>
+                                </if>
+                            </YP:subcat>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header">
+                <div class="h_in">
+                    <div class="h_left">
+                        <a href="/index.php" class="h_logo"><img src="__PUBLIC__/www/images/logo.png"></a>
+                    </div>
+                    <div class="wap-language">
+                        <i class="iconfont icon-diqiu"></i>
+                        <div class="wap-language-box">
+                            <a href="/en">English</a>
+                            <a href="/it">Italiano</a>
+                        </div>
+                    </div>
+                    <div class="h_right">
+                        <i class="iconfont icon-FontAwesomelistul" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

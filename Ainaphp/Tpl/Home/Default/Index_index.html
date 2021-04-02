@@ -1,0 +1,398 @@
+<div class="banner clearfix">
+
+    <!-- pc -->
+    <div class="camera_wrap" id="camera_demo">
+
+        <YP:list name="slide_data" limit="6" field="*" where="fid = 1" key="n">
+            <div data-src="{$r.pic}" data-target="_blank" data-link="{$r.link}"></div>
+        </YP:list>
+
+    </div>
+
+    <!-- wap -->
+    <div class="wap-banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <YP:list name="slide_data" limit="6" field="*" where="fid = 2" key="n">
+                    <div class="swiper-slide">
+                        <a href="{$r.url}" title="{$r.title}">
+                            <img src="{$r.pic}" alt="{$r.title}">
+                        </a>
+                    </div>
+                </YP:list>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="index">
+    <!-- section-spacing -->
+    <div class="section-spacing">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <YP:list name="slide_data" limit="4" field="*" where="fid = 3" key="n">
+                    <!-- start -->
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <img src="{$r.pic}" alt="">
+                            <h4><a href="{$r.url}" title="{$r.title}">{$r.title}</a></h4>
+                            <p>{$r.description}</p>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </YP:list>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ABOUT OUR COMPANY -->
+    <div class="index-about">
+        {if $Think.LANG_SET==en}
+        <?php getcatvar('page','id = 74','sycont');?>
+        {else}
+        <?php getcatvar('page','id = 150','sycont');?>
+        {/if}
+    </div>
+
+
+    <!-- OUR PRODUCTS -->
+    <div class="index-product">
+        <div class="container">
+            <div class="row">
+                <h3>{:L(OUR_PRODUCTS)}</h3>
+
+                <div class="content clearfix">
+
+                    {if $Think.LANG_SET==en}
+                    <YP:list order="listorder desc" name="Product" id="r" posid="1" where="lang=1" limit="6" field="*">
+                        <!-- statr -->
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="box">
+                                <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                <a href="{$r.url}" title="{$r.title}" class="hover-content">
+                                    <div class="text clearfix">
+                                        <div class="name">{$r.title}</div>
+                                        <!-- <p>{$r.jianjie}</p> -->
+                                        <span class="details">
+                                            <i class="iconfont icon-long-arrow-right"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    </YP:list>
+                    {else}
+                    <YP:list order="listorder desc" name="Product" id="r" posid="1" where="lang=2" limit="6" field="*">
+                        <!-- statr -->
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="box">
+                                <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                <a href="{$r.url}" title="{$r.title}" class="hover-content">
+                                    <div class="text clearfix">
+                                        <div class="name">{$r.title}</div>
+                                        <!-- <p>{$r.jianjie}</p> -->
+                                        <span class="details"><i class="iconfont icon-long-arrow-right"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    </YP:list>
+                    {/if}
+
+                </div>
+                <div class="view-all">
+                    <!--<a href="/product.html" class="v-more">{:L(VIEW_ALL)}</a>-->
+                    {if $Think.LANG_SET==en}
+                    <a href="/index.php?m=Product&a=index&id=73&l=en" class="v-more">{:L(VIEW_ALL)}</a>
+                    {else}
+                    <a href="/index.php?m=Product&a=index&id=151&l=es" class="v-more">{:L(VIEW_ALL)}</a>
+                    {/if}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SERVICES -->
+    <div class="index-services">
+        <div class="container">
+            <div class="row">
+                {if $Think.LANG_SET==en}
+                <?php getcatvar('page','id = 111','sycont');?>
+                {else}
+                <?php getcatvar('page','id = 187','sycont');?>
+                {/if}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- OUR TEAM -->
+    <div class="index-team">
+        <div class="container">
+            <div class="row">
+                <h3>{:L(OUR_TEAM)}</h3>
+                <p>
+                    {if $Think.LANG_SET==en}
+                    {$Categorys[112]['description']}
+                    {else}
+                    {$Categorys[189]['description']}
+                    {/if}
+                </p>
+                <div class="content clearfix">
+                    <div class="about">
+                        <div class="about-why">
+
+                            <div class="list clearfix">
+                                {if $Think.LANG_SET==en}
+                                <YP:list order="listorder desc" catid="112" field="*" id="r" posid="1" limit="4">
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                        <div class="box-img"> <img src="{$r.thumb}" alt="{$r.title}"> </div>
+                                        <div class="name">{$r.title}</div>
+                                        <div class="position">{$r.keyword}</div>
+                                        <div class="team-block-social-icons">
+
+                                            <div class="social-icons-block icons-style-1">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{$r.facebook}" title="Facebook">
+                                                            <i class="iconfont icon-Facebook"></i>
+                                                            <i class="iconfont icon-tian7_facebook"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li><a href="{$r.Whatsapp}">
+                                                            <i class="iconfont icon-whatsapp" aria-hidden="true"></i>
+                                                            <i class="iconfont icon-whatsapp1" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="wechats">
+                                                        <a href="javascript:;">
+                                                            <i class="iconfont icon-wechat" aria-hidden="true"></i>
+                                                            <i class="iconfont icon-wechat1" aria-hidden="true"></i>
+                                                        </a>
+                                                        <div class="box-imgs"> <img src="{$r.wechat}" alt=""></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </YP:list>
+                                {else}
+                                <YP:list order="listorder desc" catid="189" field="*" id="r" posid="1" limit="4">
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                        <div class="box-img"> <img src="{$r.thumb}" alt="{$r.title}"> </div>
+                                        <div class="name">{$r.title}</div>
+                                        <div class="position">{$r.keyword}</div>
+                                        <div class="team-block-social-icons">
+
+                                            <div class="social-icons-block icons-style-1">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{$r.facebook}" title="Facebook">
+                                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li><a href="{$r.Whatsapp}">
+                                                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="wechats">
+                                                        <a href="javascript:;">
+                                                            <i class="fa fa-wechat" aria-hidden="true"></i>
+                                                            <i class="fa fa-wechat" aria-hidden="true"></i>
+                                                        </a>
+                                                        <div class="box-imgs"> <img src="{$r.wechat}" alt=""></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </YP:list>
+                                {/if}
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FREE CONSULTATION -->
+    <div class="consulation">
+        <div class="container">
+            <div class="row">
+                <h3>{:L(FREE_CONSULTATION)}</h3>
+                <p>
+
+                    {if $Think.LANG_SET==en}
+                    {$Categorys[78]['description']}
+                    {else}
+                    {$Categorys[186]['description']}
+                    {/if}
+                </p>
+                <div class="content clearfix">
+                    <div class="img col-lg-5 col-md-5 col-sm-5">
+                        <div class="box-img"><img src="/Public/www/images/consulation.jpg" alt=""></div>
+                    </div>
+                    <div class="txt col-lg-7 col-md-7 col-sm-7">
+                        <form class="clearfix" method="post" action="index.php?g=Home&amp;a=message"
+                            onsubmit="return beforeSubmit2(this);">
+                            <input name="forward" type="hidden"
+                                value="{$_SERVER['SERVER_NAME']}{if $catid}/index.php?m={$Categorys[$catid]['module']}&a=index&id={$catid}{else}/index.php{/if}" />
+                            <input type="hidden" name="lang" value="{$Think.LANG_SET}">
+                            <div class="clearfix">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input placeholder="{:L(Namea)} *" type="text" name="name">
+                                </div>
+                                <div class="col-lg-6  col-md-6 col-sm-6">
+                                    <input placeholder="{:L(Emaila)} *" type="text" name="email">
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input placeholder="{:L(Phonea)} *" type="text" name="phone">
+                                </div>
+                                <div class="col-lg-6  col-md-6 col-sm-6">
+                                    <textarea class="" name="{:L(messagea)}" placeholder="Message ..."></textarea>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btns">{:L(GETAQUOTES)}</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LATEST NEWS -->
+    <div class="index-news">
+        <div class="container">
+            <div class="row">
+                <h3>{:L(LATESTNEWS)}</h3>
+                <p>
+
+                    {if $Think.LANG_SET==en}
+                    {$Categorys[110]['description']}
+                    {else}
+                    {$Categorys[185]['description']}
+                    {/if}
+                </p>
+                <div class="content">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+
+                            {if $Think.LANG_SET==en}
+                            <YP:list order="listorder desc" catid="110" field="*" id="r" posid="1" limit="4">
+                                <!-- start -->
+                                <div class="swiper-slide">
+                                    <a href="{$r.url}" title="{$r.title}">
+                                        <div class="box-img">
+                                            <img src="{$r.thumb}" alt="{$r.title}">
+                                            <div class="date">{$r.createtime|toDate=###,'d'}
+                                                {$r.createtime|toDate=###,'M'} {$r.createtime|toDate=###,'Y'}</div>
+                                        </div>
+                                        <div class="title">{$r.title|str_cut=###,30,'...'}</div>
+                                        <span>{:L(READMORE)}</span>
+                                    </a>
+                                </div>
+                                <!-- end -->
+                            </YP:list>
+                            {else}
+                            <YP:list order="listorder desc" catid="185" field="*" id="r" posid="1" limit="4">
+                                <!-- start -->
+                                <div class="swiper-slide">
+                                    <a href="{$r.url}" title="{$r.title}">
+                                        <div class="box-img">
+                                            <img src="{$r.thumb}" alt="{$r.title}">
+                                            <div class="date">{$r.createtime|toDate=###,'d'}
+                                                {$r.createtime|toDate=###,'M'} {$r.createtime|toDate=###,'Y'}</div>
+                                        </div>
+                                        <div class="title">{$r.title|str_cut=###,30,'...'}</div>
+                                        <span>{:L(READMORE)}</span>
+                                    </a>
+                                </div>
+                                <!-- end -->
+                            </YP:list>
+                            {/if}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- OUR PARTNERS -->
+    <div class="partners">
+        <div class="container">
+            <div class="row">
+                <div class="txt col-lg-3 col-md-3 col-sm-3">{:L(OURPARTNERS)}</div>
+                <div class="partners-sw col-lg-9 col-md-9 col-sm-9">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+
+                            {if $Think.LANG_SET==en}
+                            <YP:list order="listorder desc" catid="113" field="*" id="r" limit="8">
+                                <!-- start -->
+                                <div class="swiper-slide">
+                                    <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                </div>
+                                <!-- end -->
+                            </YP:list>
+                            {else}
+                            <YP:list order="listorder desc" catid="188" field="*" id="r" limit="8">
+                                <!-- start -->
+                                <div class="swiper-slide">
+                                    <div class="box-img"><img src="{$r.thumb}" alt="{$r.title}"></div>
+                                </div>
+                                <!-- end -->
+                            </YP:list>
+                            {/if}
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

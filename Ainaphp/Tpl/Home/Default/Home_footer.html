@@ -1,0 +1,89 @@
+<!-- footer  -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="content clearfix">
+                <div class="left col-lg-8 col-md-8 col-sm-8">
+                    <div class="clearfix">
+                        <YP:subcat catid="0" id="r" where="listorder asc" limit="150" key="n">
+                            <if condition="$r[isfooter]==1 && in_array($r[id],array(110,73,119))">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <dl>
+                                        <dt><a href="{$r.url}" title="{$r.catname}">{$r.catname}</a></dt>
+                                        {if $r[child] == 1}
+                                        <YP:subcat catid="$r[id]" where="listorder asc" id="rs">
+                                            <dd><a href="{$rs.url}" title="{$rs.catname}">{$rs.catname} </a></dd>
+                                        </YP:subcat>
+                                        {/if}
+                                    </dl>
+                                </div>
+                            </if>
+                        </YP:subcat>
+                    </div>
+                    <div class="clearfix">
+                        <YP:subcat catid="0" id="r" where="listorder asc" limit="150" key="n">
+                            <if condition="$r[isfooter]==1 && in_array($r[id],array(116,77,78))">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <dl>
+                                        <dt><a href="{$r.url}" title="{$r.catname}">{$r.catname}</a></dt>
+                                        {if $r[child] == 1}
+                                        <YP:subcat catid="$r[id]" where="listorder asc" id="rs">
+                                            <dd><a href="{$rs.url}" title="{$rs.catname}">{$rs.catname} </a></dd>
+                                        </YP:subcat>
+                                        {/if}
+                                    </dl>
+                                </div>
+                            </if>
+                        </YP:subcat>
+                    </div>
+                </div>
+                <div class="info col-lg-4 col-md-4 col-sm-4">
+                    <div class="share">
+                        <ul class="clearfix">
+                            <li><a href="{$youtube}" title="" target="_blank"><img src="/Public/www/images/youtube.png"
+                                        alt=""></a></li>
+                            <li><a href="{$facebook}" title="" target="_blank"><img
+                                        src="/Public/www/images/facebook.png" alt=""></a></li>
+                            <li><a href="{$twitter}" title="" target="_blank"><img src="/Public/www/images/twttier.png"
+                                        alt=""></a></li>
+                            <li><a href="{$ins}" title="" target="_blank"><img src="/Public/www/images/linkedin.png"
+                                        alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="select-box">
+                        <p>test</p>
+                        <ul>
+                            <li><a href="">test</a></li>
+                        </ul>
+                    </div>
+                    <div class="select-box">
+                        <p>test</p>
+                        <ul>
+                            <li><a href="">test</a></li>
+                        </ul>
+                    </div>
+                    <div class="copy">{$cop}</div>
+                </div>
+            </div>
+            <!--                <div class="cookie">
+                    <h5>COOKIE NOTICE</h5>
+                    <p>{$cop}</p>
+                </div>-->
+        </div>
+    </div>
+
+    <!-- gotop -->
+    <div class="gotop"> </div>
+</footer>
+
+</body>
+<!-- js -->
+<script src="/Public/www/js/bootstrap.min.js"></script>
+<script src="/Public/www/js/jquery.waypoints.min.js"></script>
+<script src="/Public/www/js/jquery.countup.min.js"></script>
+<script src="/Public/www/js/swiper.min.js"></script>
+<script src="/Public/www/js/jquery.fancybox.min.js"></script>
+<script src="/Public/www/js/wow.min.js"></script>
+<script src="/Public/www/js/main.js"></script>
+
+</html>
