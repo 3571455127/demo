@@ -102,8 +102,10 @@ function is_mobile() {
 		  $output .= '<a href="'.$this->pageurl($urlrule, $this->nowPage ,$this->parameter).'" title="" style="display:none;" id="page_ajax_now"></a>';
 		  $output .='</div>';
 		}else{
+
+		}
 		$output = '';
-		$output .= '<a href="'.$this->pageurl($urlrule, $pre_page,$this->parameter).'">&lt</a>';
+		$output .= '<a href="'.$this->pageurl($urlrule, $pre_page,$this->parameter).'">Prev</a>';
 		$show_nums = $this->rollPage*2+1;// 显示页码的个数
 
 		if($this->totalPages <= $show_nums){
@@ -144,8 +146,7 @@ function is_mobile() {
 			}
 		}
 
-		$output .='<a href="'.$this->pageurl($urlrule,$next_page,$this->parameter).'">&gt</a>';
-		}
+		$output .='<a href="'.$this->pageurl($urlrule,$next_page,$this->parameter).'">Next</a>';
 		return $output;
 	}
 
