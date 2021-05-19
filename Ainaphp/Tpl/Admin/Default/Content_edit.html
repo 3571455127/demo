@@ -27,7 +27,7 @@
 </table>
 <div id="bootline"></div>
 <div id="btnbox" class="btn">
-<if condition="$vo['id']!=''"><input TYPE="hidden" name="id" value="{$vo.id}"></if>
+<if condition="$vo['id']!='' && $action_name=='edit'"><input TYPE="hidden" name="id" value="{$vo.id}"></if>
 <input type="hidden"  name="lang" value="{$langid}" />
 <if condition="$module_name!='Page'">
 <input type="hidden" name="forward" value="{$_SERVER['HTTP_REFERER']}" />

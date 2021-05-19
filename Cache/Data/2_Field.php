@@ -38,7 +38,7 @@
   \'numbertype\' => \'1\',
   \'decimaldigits\' => \'0\',
   \'default\' => \'\',
-)', 'ispost' => '1', 'unpostgroup' => '', 'listorder' => '12', 'status' => '0', 'issystem' => '0', ), 'template' => array ( 'id' => '12', 'moduleid' => '2', 'field' => 'template', 'name' => '模板', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '', 'errormsg' => '', 'class' => '', 'type' => 'template', 'setup' => '', 'ispost' => '1', 'unpostgroup' => '3,4', 'listorder' => '13', 'status' => '1', 'issystem' => '1', ), 'status' => array ( 'id' => '13', 'moduleid' => '2', 'field' => 'status', 'name' => '状态', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '0', 'errormsg' => '', 'class' => '', 'type' => 'radio', 'setup' => 'array (
+)', 'ispost' => '1', 'unpostgroup' => '', 'listorder' => '12', 'status' => '0', 'issystem' => '0', ), 'template' => array ( 'id' => '12', 'moduleid' => '2', 'field' => 'template', 'name' => '模板', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '', 'errormsg' => '', 'class' => '', 'type' => 'template', 'setup' => '', 'ispost' => '1', 'unpostgroup' => '3,4', 'listorder' => '13', 'status' => '0', 'issystem' => '1', ), 'status' => array ( 'id' => '13', 'moduleid' => '2', 'field' => 'status', 'name' => '状态', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '0', 'errormsg' => '', 'class' => '', 'type' => 'radio', 'setup' => 'array (
   \\\'options\\\' => \\\'发布|1
 暂停发布|0\\\',
   \\\'fieldtype\\\' => \\\'tinyint\\\',

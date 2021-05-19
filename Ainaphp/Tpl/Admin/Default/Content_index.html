@@ -76,7 +76,16 @@
 
 	</tr>
 </table>
-
+<style>
+    .listimga{display: none;position: fixed;width:200px;
+    top: 50%;
+    left: 50%;
+    z-index: 999999;}
+    .listimg2:hover .listimga{display: block;}
+    /*tr:hover .listimga{display: block;}*/
+    .editbtn,.fuzhibtn,.deletebtn{border: 1px solid #444; padding: 2px 4px;}
+    .editbtn:hover,.fuzhibtn:hover,.deletebtn:hover{border: 1px solid red;}
+</style>
 <form name="myform" id="myform" action="" method="post">
 
 <div class="table-list">
@@ -92,7 +101,7 @@
 			<if condition="$fields['hits']"><th width="40">{:L('hits')}</th> </if>
 			<th width="60">{:L('username')}</th>
 
-			<th width="72">{:L('manage')}</th>
+			<th width="150">{:L('manage')}</th>
             </tr>
         </thead>
       	<tbody>
@@ -101,17 +110,27 @@
 			<td  width="30" align="center"><input class="inputcheckbox " name="ids[]" value="{$vo['id']}" type="checkbox" ></td>
 			<td width="40" align='center'><input name='listorders[{$vo.id}]' type='text' size='3' value='{$vo.listorder}' class='input-text-c'></td>
 			<td align="center">{$vo['id']}</td>
-      		<td><if condition="$vo['catid']">[<font color="green">{$categorys[$vo['catid']]['catname']}</font>]</if>
+                        <td class="listimg2"><if condition="$vo['catid']">[<font color="green">{$categorys[$vo['catid']]['catname']}</font>]</if>
 			{if $module_name=='Message'}<a href="{:U($module_name.'/edit',array(id=>$vo['id']))}" >{$vo['title']} </a>{else}<a href="{$vo.url}"  <if condition="$vo['title_style']!=''">style ="{$vo['title_style']}"</if> target="_blank">{$vo['title']} </a>{/if}
 
-			<if condition="$vo['thumb']!=''"><img src="./Public/Images/admin_image.gif"></if>
+			<if condition="$vo['thumb']!=''">
+                            
+                            <img src="./Public/Images/admin_image.gif">
+                            <img class="listimga" src="{$vo['thumb']}">
+                        </if>
 			<if condition="$vo['posid']!=0"><img src="./Public/Images/admin_elite.gif"></if></td>
             <td align="center">{$vo['createtime']|toDate=###,"Y/m/d"}</td>
 			<if condition="$fields['status']"><td align="center">{if $vo['status']==1}<font color="green">{:L('isshenhe')}</font>{else}<a href="{:U($module_name.'/status',array(id=>$vo['id'],status=>1))}"><font color="red">{:L('noshenhe')}</font></a>{/if}</td></if>
 			<if condition="$fields['hits']"> <td align="center">{$vo['hits']}</td></if>
       		<td align="center">{$vo['username']}</td>
 
-			<td align="center">{if $module_name=='Message'}<a href="{:U($module_name.'/edit',array(id=>$vo['id']))}">查看</a>{else}<a href="{:U($module_name.'/edit',array(id=>$vo['id']))}">{:L('edit')}</a>{/if} | <a href="javascript:confirm_delete('{:U($module_name.'/delete',array(id=>$vo['id']))}')">{:L('delete')}</a></td>
+			<td align="center">{if $module_name=='Message'}<a href="{:U($module_name.'/edit',array(id=>$vo['id']))}">查看</a>{else}
+                            <a class="editbtn" href="{:U($module_name.'/edit',array(id=>$vo['id']))}">{:L('edit')}</a> 
+                            <a class="fuzhibtn" href="{:U($module_name.'/add',array(id=>$vo['id']))}">复制</a>
+                            {/if} 
+                            
+                            <a class="deletebtn" href="javascript:confirm_delete('{:U($module_name.'/delete',array(id=>$vo['id']))}')">{:L('delete')}</a>
+                        </td>
       		</tr>
       		</volist>
       	</tbody>

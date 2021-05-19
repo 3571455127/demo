@@ -75,6 +75,40 @@ function googleTranslateElementInit() {
                           
                 </script>
             <?php endif;?>
+            <?php if(MODULE_NAME=='Product') : ?>
+            <a href="javascript:;" onclick='showinput();'>批量上传</a>|
+<div id="showinput" class="d-bg">
+    <div class="close-btn" onclick="hideinput();">X</div>
+    <div><a href="__PUBLIC__/www/images/product.xls" download>下载模板</a></div>
+        <form id="showinput" enctype="multipart/form-data" method="post" action="/index.php?g=Home&a=inputexcel">
+        <div class="upload"><input type="file" name="fileToUpload" id="fileToUpload" /></div>
+        <div style="text-align: center;"><input class="sbumit-btn" type="submit" value="提交" /></div>
+        </form>
+</div>
+                
+                <script>
+function hideinput(){
+$('#showinput').hide();
+}
+                            function showinput(){
+                            $('#showinput').show();
+//                                    var ep = $('#ep').val();
+//                                    var listRows = $("select[name='listRows']").val();
+//                                    if(!listRows){
+//                                        listRows = $('#elistRows').val();
+//                                    }
+//                                    var title = $('#title').val();
+//                                    var status = $('#status').val();
+//                                    var em = $('#em').val();
+//                                    var emid = $('#emid').val();
+//                                    window.location.href="/index.php?g=Home&a=getExcel&ep="+ep+'&listRows='+listRows+'&title='+title+'&status='+status+'&em='+em+'&emid='+emid;
+
+                                    //alert(ep+'|'+listRows+'|'+title+'|'+status+'|'+em);
+                            }
+
+                          
+                </script>
+            <?php endif;?>
             <a href="<?php echo U($nav[bnav][model].'/'.$nav[bnav][action],$nav[bnav][data]);?>"><?php echo ($nav["bnav"]["name"]); ?></a>|
 	<?php if(is_array($nav["nav"])): $n = 0; $__LIST__ = $nav["nav"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vonav): $mod = ($n % 2 );++$n; if($vonav[data][isajax]): if($n>1) : ?>|<?php endif;?><a href="javascript:void(0);" onclick="openwin('<?php echo ($vonav[action]); ?>','<?php echo U($vonav[model].'/'.$vonav[action],$vonav[data]);?>','<?php echo ($vonav["name"]); ?>',600,440)"><?php echo ($vonav["name"]); ?></a>
 	<?php else: ?>
@@ -208,6 +242,49 @@ if(catid && catid2){
 		}
 	});
 	</script><?php endif; ?>
+<style>
+   .d-bg{
+        display: none;
+        position: absolute;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
+    }
+    .d-bg .close-btn{
+        position: absolute;
+        top: 0;
+        right: 20px;
+        color:#1caf9a;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .d-bg .sbumit-btn{
+        padding: 5px 20px;
+        border:none;
+        cursor: pointer;
+        font-size: 15px;
+        margin-top: 10px;
+        background: #F5F5F5;
+        color: #333;
+    }
+    .d-bg .sbumit-btn:hover{
+        color:#fff;
+        background-color:#1caf9a ;
+    }
+    .d-bg  .mainnav_title a{
+        font-size: 15px;
+    }
+    .d-bg  .upload {
+margin: 10px ;
+    }
+    .d-bg  .upload input{
+        cursor: pointer;
+        font-size: 15px;
+        color:#666; 
+    }
+</style>
+
+  
 
 
 <script>

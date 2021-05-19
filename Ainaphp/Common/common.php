@@ -88,20 +88,42 @@ function getAddressFromIp($ip){
     $urlTaobao = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
 //    $urlSina = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip='.$ip;
     $urlSina = 'http://whois.pconline.com.cn/ipJson.jsp?json=true&ip='.$ip;//太平洋
-    $json = file_get_contents($urlTaobao);
-    $jsonDecode = json_decode($json);
-    if($jsonDecode->code==0){//如果取不到就去取新浪的
+    $IpAddress = '';
+    
+    $json = curlhttp($urlSina);
+    if($json->addr){//如果取不到就去取新浪的
+        $json = curlhttp($urlSina);
+        $IpAddress=$json->addr;
+        
+		return  $IpAddress;
+    }else{
+        $json = file_get_contents($urlTaobao);
+        $jsonDecode = json_decode($json);
+        if($jsonDecode->code==0){
         $data['country'] = $jsonDecode->data->country;
         $data['province'] = $jsonDecode->data->region;
         $data['city'] = $jsonDecode->data->city;
         $data['isp'] = $jsonDecode->data->isp;
         $IpAddress=$data['country'].$data['province'];
-		return  $IpAddress;
-    }else{
-         $json = curlhttp($urlSina);
-        $IpAddress=$json->addr;
+        }
 		return  $IpAddress;
     }
+    
+
+//    $json = file_get_contents($urlTaobao);
+//    $jsonDecode = json_decode($json);
+//    if($jsonDecode->code==0){//如果取不到就去取新浪的
+//        $data['country'] = $jsonDecode->data->country;
+//        $data['province'] = $jsonDecode->data->region;
+//        $data['city'] = $jsonDecode->data->city;
+//        $data['isp'] = $jsonDecode->data->isp;
+//        $IpAddress=$data['country'].$data['province'];
+//		return  $IpAddress;
+//    }else{
+//         $json = curlhttp($urlSina);
+//        $IpAddress=$json->addr;
+//		return  $IpAddress;
+//    }
 }
 //判断是否为移动端
 function is_mobile() {

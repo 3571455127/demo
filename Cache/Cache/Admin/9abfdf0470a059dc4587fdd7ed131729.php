@@ -75,6 +75,29 @@ function googleTranslateElementInit() {
                           
                 </script>
             <?php endif;?>
+            <a href="javascript:;" onclick='showinput();'>批量上传</a>|
+<div id="showinput" style="    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid black;display: none;">
+    <div onclick="hideinput();">X</div>
+    <div><a href="__PUBLIC__/www/images/product.xls" download>下载模板</a></div>
+        <form id="showinput" enctype="multipart/form-data" method="post" action="/index.php?g=Home&a=inputexcel">
+        <div><input type="file" name="fileToUpload" id="fileToUpload" /></div>
+        <div><input type="submit" value="Submit" /></div>
+        </form>
+</div>
+                
+                <script>
+function hideinput(){
+$('#showinput').hide();
+}
+                            function showinput(){
+                            $('#showinput').show();
+                            }
+
+                          
+                </script>
             <a href="<?php echo U($nav[bnav][model].'/'.$nav[bnav][action],$nav[bnav][data]);?>"><?php echo ($nav["bnav"]["name"]); ?></a>|
 	<?php if(is_array($nav["nav"])): $n = 0; $__LIST__ = $nav["nav"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vonav): $mod = ($n % 2 );++$n; if($vonav[data][isajax]): if($n>1) : ?>|<?php endif;?><a href="javascript:void(0);" onclick="openwin('<?php echo ($vonav[action]); ?>','<?php echo U($vonav[model].'/'.$vonav[action],$vonav[data]);?>','<?php echo ($vonav["name"]); ?>',600,440)"><?php echo ($vonav["name"]); ?></a>
 	<?php else: ?>

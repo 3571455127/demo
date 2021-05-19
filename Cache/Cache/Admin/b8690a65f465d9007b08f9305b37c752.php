@@ -286,226 +286,26 @@ margin: 10px ;
 
   
 
-<script type="text/javascript" src="__ROOT__/Public/Js/jQuery.Hz2Py-min.min.js"></script>
-<form name="myform"  id="myform"  action="<?php if($action_name=='add'): echo U('Category/insert'); else: echo U('Category/update'); endif; ?>&iscreatehtml=1" method="post">
 
-
-<div id="tabs" style="margin-top:10px;">
-	<div class="title"><ul class="clearfix" style="margin-left:30px;"><li class="on"><a href="javascript:void(0);"><?php echo L(base_setup);?></a></li>
-	<li style="margin-left:10px;"><a href="javascript:void(0);"><?php echo L(seo_setup);?></a></li>
-</ul></div>
-
-<div class="content_2">
-	<div class="tabbox" style="display:block;">
-		<table cellpadding=0 cellspacing=0 class="table_form"width="100%"><tr>
-		<td width="15%"><?php echo L('chose_module');?></td>
-        <td width="85%" class="box_thumb">
-
-		<script type="text/javascript" src="./Public/Js/swfupload.js"></script>
-		<div class="thumb_box" style ="margin-top:-7px;left:340px;"><div id="image_aid_box"></div>
-		<a href="javascript:swfupload('image_uploadfile','image','<?php echo L(uploadfiles);?>',1,1,0,1,'jpeg,jpg,png,gif',3,0,'<?php echo ($yourphp_auth); ?>',yesdo,nodo)"><img src="<?php if(!empty($vo['image'])): echo ($vo['image']); else: ?>./Public/Images/admin_upload_thumb.png<?php endif; ?>"  id="image_pic" ></a><br> <input type="button" value="<?php echo L('clean_thumb');?>" onclick="javascript:clean_thumb('image');" class="button" /><input type="hidden"  id="image" name="image"  value="<?php echo ($vo['image']); ?>" /><span class="thumb_tips"></span></div>
-		<?php echo Form::select(array('field'=>'moduleid','options'=>$module+array('0'=>array('id'=>0,'title'=>L('Module_url'))),'options_key'=>'id,title','setup'=>array('onchange'=>'changetemplate(this.value)')),$vo['moduleid']);?>
-		</td>
-      </tr>
-      <tr>
-        <td><?php echo L('chose_parentid');?></td>
-        <td>
-
-		<select name="parentid">
-		<option value=""><?php echo L('select_parentid');?></option>
-		<?php echo ($select_categorys); ?>
-		</select>
-		</td>
-      </tr>
-
-      	<tr>
-		<td>* <?php echo L('catname');?></td>
-		<td><input type="text" name="catname" class="input-text  required"  id="catname" value="<?php echo ($vo['catname']); ?>"  minlength="1"  maxlength="100"  /></td>
-		</tr>
-
-	    <tr>
-		<td>* <?php echo L('catdir');?></td>
-		<td><input type="text" id="catdir" name="catdir" class="input-text  required" value="<?php echo ($vo['catdir']); ?>" validate="required:true, english:true,minlength:1, maxlength:100"/><span class="catdirBtn" onclick="catdir.value=($('#catname').toPinyin());"><?php echo L('pinyin');?></span></td>
-		</tr>
-
-
-
-
-		<tr id="module_url" style="display:none;">
-		<td><?php echo L('cat_link_url');?></td>
-		<td><input type="text" name="url" class="input-text"  value="<?php if($vo['type']==1): echo ($vo['url']); endif; ?>" size='50'  /><input type="hidden" id="type" name="type" value="0" /></td>
-		</tr>
-
-
-<!--
-		<tr style="background:#EFEFEF;">
-		<td><?php echo L('chage_is');?>: </td>
-		<td><input type="checkbox"  class="input_checkbox "  id="chage_all" name="chage_all" value="1" /><font color="red"> <?php echo L('chage_all');?></font>
-		</td>
-		</tr>
--->
-<tr>
-<td>头部导航显示: </td>
-<td>
-    <label for="ismenu0">否<input type="radio" id="ismenu0" name="ismenu" value="0"   <?php if(!$vo['ismenu']): ?>checked<?php endif; ?>/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-    <label for="ismenu1">是<input type="radio" id="ismenu1" name="ismenu" value="1" <?php if($vo['ismenu']==1): ?>checked<?php endif; ?> /></label>
-    
-</td>
-</tr>
-<tr>
-<td>底部导航显示: </td>
-<td>
-    <label for="isfooter0">否<input type="radio" id="isfooter0" name="isfooter" value="0"   <?php if(!$vo['isfooter']): ?>checked<?php endif; ?>/></label>&nbsp;&nbsp;&nbsp;&nbsp;
-    <label for="isfooter1">是<input type="radio" id="isfooter1" name="isfooter" value="1" <?php if($vo['isfooter']==1): ?>checked<?php endif; ?> /></label>
-    
-</td>
-</tr>
-
-		<tr id="urlrule">
-		<td><?php echo L('urlrule');?></td>
-		<td><?php echo Form::select(array('field'=>'urlruleid','options'=>$Urlrule,'options_key'=>'key,listexample'),$vo['urlruleid']);?></td>
-		</tr>
-
-
-		<tr>
-		<td><?php echo L('pagesize');?></td>
-		<td><input type="text" name="pagesize" class="input-text" value="<?php if(!empty($vo['pagesize'])): echo ($vo['pagesize']); endif; ?>" size="3" /> <font color="red"><?php echo L('pagesize_desc');?></font></td>
-		</tr>
-
-		<tr>
-		<td><?php echo L('template_list');?></td>
-		<td>
-		<select id="template_list" name="template_list"></select>
-			</td>
-		</tr>
-
-		<tr>
-		<td><?php echo L('template_show');?></td>
-		<td><select id="template_show" name="template_show"></select>
-		</td>
-		</tr>
-		</table>
-
-
-
-	</div>
-
-	<div class="tabbox" style="display:none;">
-		<table cellpadding=0 cellspacing=0 class="table_form"width="100%">
-		 <tr>
-		  <td><?php echo L('seo_title');?></td>
-		  <td><input name='title' type='text' id='meta_title' value="<?php echo ($vo['title']); ?>" class="input-text"  size='60' maxlength='150'></td>
-		</tr>
-		<tr>
-		  <td><?php echo L('seo_keywords');?></td>
-		  <td><input name='keywords' type='text' id='meta_keywords' value="<?php echo ($vo['keywords']); ?>" class="input-text"  size='60' maxlength='150'></td>
-		</tr>
-		<tr>
-		  <td><?php echo L('seo_description');?></td>
-		  <td><textarea name='description' id='meta_description'  rows="5" cols="60" ><?php echo ($vo['description']); ?></textarea></td>
-		</tr>
-                <tr>
-		  <td>栏目头部介绍</td>
-		  <td>
-                  <?php echo Form::editor(array('field'=>'catcont'),$vo['catcont']);?>
-                  </td>
-		</tr>
-                <tr>
-		  <td>栏目底部介绍</td>
-		  <td>
-                  <?php echo Form::editor(array('field'=>'catcont2'),$vo['catcont2']);?>
-                  </td>
-		</tr>
-		</table>
-	</div>
+<form id="myform" name="myform" action="<?php echo U('Menu/listorder');?>" method="post">
+<div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+            <th width="40"><?php echo L('listorder');?></th>
+            <th width="20">id</th>
+            <th><?php echo L('menu_name');?></th>
+			<th width="40"><?php echo L('status');?></th>
+			<th width="170"><?php echo L('manage');?></th>
+            </tr>
+        </thead>
+	<tbody>
+    <?php echo $select_categorys;?>
+	</tbody>
+    </table>
+    <div class="btn"><input type="submit" class="button" name="dosubmit" value="<?php echo L('listorder')?>" /></div>  </div>
 </div>
-
-
-
-		<div class="btn">
-		<?php if($vo['id']!=''): ?><input TYPE="hidden" name="id" value="<?php echo ($vo["id"]); ?>"><?php endif; ?>
-		<INPUT TYPE="submit"  value="<?php echo L('dosubmit');?>" class="button buttonBtn" >
-		<input TYPE="reset"  value="<?php echo L('cancel');?>" class="button">
-		</div>
-
 </form></div>
-
-<script>
-
-var modulearr = new Array();
-<?php if(is_array($module)): $i = 0; $__LIST__ = $module;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$mdate): $mod = ($i % 2 );++$i;?>modulearr[<?php echo ($mdate['id']); ?>] = "<?php echo ($mdate['name']); ?>";<?php endforeach; endif; else: echo "" ;endif; ?>
-var templatearr = new Array();
-<?php if(is_array($templates)): $i = 0; $__LIST__ = $templates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tem): $mod = ($i % 2 );++$i;?>templatearr[<?php echo ($i); ?>] = "<?php echo ($tem['name']); ?>,<?php echo ($tem['value']); ?>,<?php echo ($tem['filename']); ?>";<?php endforeach; endif; else: echo "" ;endif; ?>
-
-
-var datas = "<option value=''><?php echo L('please_chose');?></option>";
-var moduleid =  $('#moduleid').val();
-
-
-showtemplist(moduleid,<?php if(empty($vo[listtype])): ?>0<?php else: echo ($vo["listtype"]); endif; ?>);
-function showtemplist(m,t){
-	var type='_list';
-	if(t){type='_index';}
-	var mtlist = modulearr[m]+type;
-	var mtshow = modulearr[m]+'_show';
-	if(modulearr[m]=='Page') mtlist=mtshow ='Page';
-	$('#template_list').html(datas);
-	$('#template_show').html(datas);
-	listdatas = showdatas ='';
-	for(i=1;i<templatearr.length;i++){
-		data = templatearr[i].split(',');
-		if(data[0].indexOf(mtlist)  >= 0){
-			listdatas  ="<option value='"+data[1]+"'>"+data[2]+"</option>";
-			$('#template_list').append(listdatas);
-		}
-		if(data[0].indexOf(mtshow)  >= 0){
-			showdatas ="<option value='"+data[1]+"'>"+data[2]+"</option>";
-			$('#template_show').append(showdatas);
-		}
-	}
-	$("#template_list").attr("value",'<?php echo ($vo["template_list"]); ?>');
-	$("#template_show").attr("value",'<?php echo ($vo["template_show"]); ?>');
-}
-function changetemplate(m){
-	if(m==0){
-		$('#module_url').show();
-		$('#type').val('1');
-		$('#catdir').removeClass('required');
-	}else{
-		$('#module_url').hide();
-		$('#type').val('0');
-		$('#catdir').addClass('required');
-	}
-	showtemplist(m,0);
-	$("#listtype").removeAttr("checked");
-}
-function templatetype(){
-	var moduleid = $('#moduleid').val();
-	if($("#listtype").attr('checked')=='checked'){
-		showtemplist(moduleid,1);
-	}else{
-		showtemplist(moduleid,0);
-	}
-}
-new Tabs("#tabs",".title ul li",".content_2",".tabbox","on",1);
-
-
-function urlrule(m){
-
-	if(m==1){
-		$('#urlrule').show();
-	}else{
-		$('#urlrule').hide();
-	}
-}
-urlrule(<?php echo ($vo['ishtml']); ?>);
-
-
-<?php if(!empty($_GET['type'])): ?>$('#moduleid').val(0);
-changetemplate(0);<?php endif; ?>
-
-
-</script>
 
 </body>
 </html>

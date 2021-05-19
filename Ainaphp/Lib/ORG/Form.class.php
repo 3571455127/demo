@@ -96,11 +96,12 @@ class Form extends Think {
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
 		$info['setup']['ispassword'] ? $inputtext = 'password' : $inputtext = 'text';
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		$parseStr   = '<input type="'.$inputtext.'"   class="input-text '.$info['class'].'" name="'.$field.'"  id="'.$id.'" value="'.stripcslashes($value).'" size="'.$info['setup']['size'].'"  '.$validate.'/> ';
 		return $parseStr;
 	}
@@ -123,11 +124,12 @@ class Form extends Think {
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
 		$info['setup']['ispassowrd'] ? $inputtext = 'passowrd' : $inputtext = 'text';
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		$parseStr   = '<input type="'.$inputtext.'"   class="input-text '.$info['class'].'" name="'.$field.'"  id="'.$id.'" value="'.$value.'" size="'.$info['setup']['size'].'"  '.$validate.'/> ';
 		return $parseStr;
 	}
@@ -136,12 +138,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
         $validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
-
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+$value = $value ? $value : $this->data[$field];
 		$parseStr   = '<textarea  class="'.$info['class'].'" name="'.$field.'"  rows="'.$info['setup']['rows'].'" cols="'.$info['setup']['cols'].'"  id="'.$id.'"   '.$validate.'/>'.stripcslashes($value).'</textarea>';
 		return $parseStr;
 	}
@@ -152,11 +154,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 		$validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
         if($value != '') $value = strpos($value, ',') ? explode(',', $value) : $value;
 
         if(is_array($info['options'])){
@@ -208,11 +211,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 		$validate = getvalidate($info);
-		if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//		if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
         $labelwidth = $info['setup']['labelwidth'];
 
 
@@ -260,11 +264,12 @@ class Form extends Think {
        $info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 		$validate = getvalidate($info);
-		if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//		if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
         $labelwidth = $info['setup']['labelwidth'];
 
         if(is_array($info['options'])){
@@ -309,11 +314,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 		$validate = getvalidate($info);
-		if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//		if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		 $textareaid = $field;
 		 $toolbar = $info['setup']['toolbar'];
 		 $moduleid = $info['moduleid'];
@@ -428,11 +434,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 		$validate = getvalidate($info);
-		if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//		if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		$value = $value ?  toDate($value,"Y-m-d H:i:s") : toDate(time(),"Y-m-d H:i:s");
 
 		$parseStr = '<input  class="Wdate input-text  '.$info['class'].'"  '.$validate.'  name="'.$field.'" type="text" id="'.$id.'" size="25" onFocus="WdatePicker({dateFmt:\'yyyy-MM-dd HH:mm:ss\'
@@ -522,11 +529,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		if(empty($info['setup']['upload_maxsize'])){
 			if(APP_LANG){
 				$Config = F('Config_'.$this->lang);
@@ -548,11 +556,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		$data='';
 		$i=0;
 		if($value){
@@ -592,11 +601,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		if(empty($info['setup']['upload_maxsize'])){
 			if(APP_LANG){
 				$Config = F('Config_'.$this->lang);
@@ -615,11 +625,12 @@ class Form extends Think {
 		$info['setup']=is_array($info['setup']) ? $info['setup'] : string2array($info['setup']);
 		$id = $field = $info['field'];
 	    $validate = getvalidate($info);
-        if(ACTION_NAME=='add'){
-			$value = $value ? $value : $info['setup']['default'];
-        }else{
-			$value = $value ? $value : $this->data[$field];
-        }
+//        if(ACTION_NAME=='add'){
+//			$value = $value ? $value : $info['setup']['default'];
+//        }else{
+//			$value = $value ? $value : $this->data[$field];
+//        }
+        $value = $value ? $value : $this->data[$field];
 		if(empty($info['setup']['upload_maxsize'])){
 			if(APP_LANG){
 				$Config = F('Config_'.$this->lang);

@@ -75,40 +75,6 @@ function googleTranslateElementInit() {
                           
                 </script>
             <?php endif;?>
-            <?php if(MODULE_NAME=='Product') : ?>
-            <a href="javascript:;" onclick='showinput();'>批量上传</a>|
-<div id="showinput" class="d-bg">
-    <div class="close-btn" onclick="hideinput();">X</div>
-    <div><a href="__PUBLIC__/www/images/product.xls" download>下载模板</a></div>
-        <form id="showinput" enctype="multipart/form-data" method="post" action="/index.php?g=Home&a=inputexcel">
-        <div class="upload"><input type="file" name="fileToUpload" id="fileToUpload" /></div>
-        <div style="text-align: center;"><input class="sbumit-btn" type="submit" value="提交" /></div>
-        </form>
-</div>
-                
-                <script>
-function hideinput(){
-$('#showinput').hide();
-}
-                            function showinput(){
-                            $('#showinput').show();
-//                                    var ep = $('#ep').val();
-//                                    var listRows = $("select[name='listRows']").val();
-//                                    if(!listRows){
-//                                        listRows = $('#elistRows').val();
-//                                    }
-//                                    var title = $('#title').val();
-//                                    var status = $('#status').val();
-//                                    var em = $('#em').val();
-//                                    var emid = $('#emid').val();
-//                                    window.location.href="/index.php?g=Home&a=getExcel&ep="+ep+'&listRows='+listRows+'&title='+title+'&status='+status+'&em='+em+'&emid='+emid;
-
-                                    //alert(ep+'|'+listRows+'|'+title+'|'+status+'|'+em);
-                            }
-
-                          
-                </script>
-            <?php endif;?>
             <a href="<?php echo U($nav[bnav][model].'/'.$nav[bnav][action],$nav[bnav][data]);?>"><?php echo ($nav["bnav"]["name"]); ?></a>|
 	<?php if(is_array($nav["nav"])): $n = 0; $__LIST__ = $nav["nav"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vonav): $mod = ($n % 2 );++$n; if($vonav[data][isajax]): if($n>1) : ?>|<?php endif;?><a href="javascript:void(0);" onclick="openwin('<?php echo ($vonav[action]); ?>','<?php echo U($vonav[model].'/'.$vonav[action],$vonav[data]);?>','<?php echo ($vonav["name"]); ?>',600,440)"><?php echo ($vonav["name"]); ?></a>
 	<?php else: ?>
@@ -242,75 +208,106 @@ if(catid && catid2){
 		}
 	});
 	</script><?php endif; ?>
-<style>
-   .d-bg{
-        display: none;
-        position: absolute;
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
-    }
-    .d-bg .close-btn{
-        position: absolute;
-        top: 0;
-        right: 20px;
-        color:#1caf9a;
-        cursor: pointer;
-        font-size: 18px;
-    }
-    .d-bg .sbumit-btn{
-        padding: 5px 20px;
-        border:none;
-        cursor: pointer;
-        font-size: 15px;
-        margin-top: 10px;
-        background: #F5F5F5;
-        color: #333;
-    }
-    .d-bg .sbumit-btn:hover{
-        color:#fff;
-        background-color:#1caf9a ;
-    }
-    .d-bg  .mainnav_title a{
-        font-size: 15px;
-    }
-    .d-bg  .upload {
-margin: 10px ;
-    }
-    .d-bg  .upload input{
-        cursor: pointer;
-        font-size: 15px;
-        color:#666; 
-    }
-</style>
-
-  
 
 
 
-<form name="myform" action="<?php echo U('Category/listorder');?>" method="post">
-<div class="pad-lr-10">
-<div class="table-list">
-    <table width="100%" cellspacing="0">
-        <thead>
-            <tr>
-            <th width="40"><?php echo L('listorder');?></th>
-            <th width="40">catid</th>
-            <th><?php echo L('catname');?></th>
-			<th width="80"><?php echo L('use_module');?></th>
-			<th width="30"><?php echo L('fangwen');?></th>
-			<th width="260"><?php echo L('manage');?></th>
-            </tr>
-        </thead>
-	<tbody>
-    <?php echo ($categorys); ?>
-	</tbody>
-    </table>
+<form method='post'  id="form1" action="<?php echo U('Config/dosite');?>">
+<table width="100%"  cellpadding=0 cellspacing=0  class="table_form">
 
-    <div class="btn"><input type="submit" class="button" name="dosubmit" value="<?php echo L('listorder');?>" /></div></div>
+
+<tr>
+    <th width="130"><?php echo L('config_attach_maxsize');?></th>
+    <td><input type="text" class="input-text" name="attach_maxsize" id="attach_maxsize" size="10" value="<?php echo ($attach_maxsize); ?>"/> B </td>
+  </tr>
+  <tr>
+    <th width="130"><?php echo L('config_attach_allowext');?></th>
+    <td><input type="text" class="input-text" name="attach_allowext" id="attach_allowextt" size="50" value="<?php echo ($attach_allowext); ?>"/></td>
+  </tr>
+
+
+  <tr>
+    <th><?php echo L('config_attach_watermark_enable');?></th>
+    <td>
+	  <input class="radio_style" name="watermark_enable" value="1"   <?php if($watermark_enable == 1): ?>checked<?php endif; ?> type="radio"> <?php echo L('open_select');?>&nbsp;&nbsp;&nbsp;&nbsp;
+	  <input class="radio_style" name="watermark_enable" value="0"   <?php if($watermark_enable == 0): ?>checked<?php endif; ?> type="radio"> <?php echo L('close_select');?>     </td>
+  </tr>
+
+	  <tr>
+		<th width="130"><?php echo L('config_attach_watemard_text');?></th>
+		<td><input type="text" class="input-text" name="watemard_text" id="watemard_text" size="30" value="<?php echo ($watemard_text); ?>"/></td>
+	  </tr>
+	<tr>
+		<th width="130"><?php echo L('config_attach_watemard_text_size');?></th>
+		<td><input type="text" class="input-text" name="watemard_text_size" id="watemard_text_size" size="5" value="<?php echo ($watemard_text_size); ?>"/></td>
+	  </tr>
+	<tr>
+		<th width="130"><?php echo L('config_attach_watemard_text_color');?></th>
+		<td><input type="text" class="input-text" name="watemard_text_color" id="watemard_text_color" size="10" value="<?php echo ($watemard_text_color); ?>"/><?php echo L('config_attach_watemard_text_color_tip');?></td>
+	  </tr>
+	<tr>
+		<th width="130"><?php echo L('config_attach_watemard_text_face');?></th>
+		<td><input type="text" class="input-text" name="watemard_text_face" id="watemard_text_face" size="20" value="<?php echo ($watemard_text_face); ?>"/><?php echo L('config_attach_watemard_text_face_tip');?></td>
+	  </tr>
+
+
+
+
+  <tr>
+    <th><?php echo L('config_attach_watermark_minwidth');?></th>
+    <td><input type="text" class="input-text" name="watermark_minwidth" id="watermark_minwidth" size="5" value="<?php echo ($watermark_minwidth); ?>" /> PX <?php echo L('width');?> <input type="text" class="input-text" name="watermark_minheight" id="watermark_minheight" size="5" value="<?php echo ($watermark_minheight); ?>" /> PX <?php echo L('height');?>
+     </td>
+  </tr>
+  <tr>
+    <th width="130"><?php echo L('config_attach_watermark_img');?></th>
+    <td><input type="text" name="watermark_img" id="watermark_img" size="30" value="<?php echo ($watermark_img); ?>"/> <?php echo L('config_attach_watermark_img_tip');?></td>
+  </tr>
+   <tr>
+    <th width="130"><?php echo L('config_attach_watermark_pct');?></th>
+    <td><input type="text" class="input-text" name="watermark_pct" id="watermark_pct" size="10" value="<?php echo ($watermark_pct); ?>" /> </td>
+  </tr>
+   <tr>
+    <th width="130"><?php echo L('config_attach_watermark_quality');?></th>
+    <td><input type="text" class="input-text" name="watermark_quality" id="watermark_quality" size="10" value="<?php echo ($watermark_quality); ?>" /> </td>
+  </tr>
+	<tr>
+    <th width="130"><?php echo L('config_attach_watermark_pos_padding');?></th>
+    <td><input type="text" class="input-text" name="watermark_pospadding" id="watermark_pospadding" size="10" value="<?php echo ($watermark_pospadding); ?>" /> </td>
+  </tr>
+
+
+   <tr>
+    <th width="130"><?php echo L('config_attach_watermark_pos');?></th>
+    <td>
+		<table width="60%" class="radio-label"  cellpadding=0 cellspacing=0 >
+		  <tr>
+		   <td rowspan="3"><input class="radio_style" name="watermark_pos" value="10" type="radio" <?php if($watermark_pos == 10): ?>checked<?php endif; ?> > <?php echo L('config_attach_watermark_pos_rand');?></td>
+			<td><input class="radio_style" name="watermark_pos" value="1" type="radio" <?php if($watermark_pos == 1): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_1');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="2" type="radio" <?php if($watermark_pos == 2): ?>checked<?php endif; ?> > <?php echo L('config_attach_watermark_pos_2');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="3" type="radio" <?php if($watermark_pos == 3): ?>checked<?php endif; ?> > <?php echo L('config_attach_watermark_pos_3');?></td>
+		  </tr>
+		  <tr>
+			<td><input class="radio_style" name="watermark_pos" value="4" type="radio" <?php if($watermark_pos == 4): ?>checked<?php endif; ?> > <?php echo L('config_attach_watermark_pos_4');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="5" type="radio"  <?php if($watermark_pos == 5): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_5');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="6" type="radio" <?php if($watermark_pos == 6): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_6');?></td>
+			</tr>
+		  <tr>
+			<td><input class="radio_style" name="watermark_pos" value="7" type="radio" <?php if($watermark_pos == 7): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_7');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="8" type="radio" <?php if($watermark_pos == 8): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_8');?></td>
+			  <td><input class="radio_style" name="watermark_pos" value="9" type="radio"  <?php if($watermark_pos == 9): ?>checked<?php endif; ?>> <?php echo L('config_attach_watermark_pos_9');?></td>
+			</tr>
+			</table>
+	</td>
+	</tr>
+
+
+
+  </table>
+<div class="btn">
+<INPUT TYPE="submit"  value="<?php echo L('save');?>" class="button buttonBtn" >
+<input TYPE="reset"  value="<?php echo L('reset');?>" class="button">
 </div>
+</form>
 </div>
-</form></div>
 
 </body>
 </html>

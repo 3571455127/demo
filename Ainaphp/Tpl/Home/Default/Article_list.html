@@ -1,46 +1,79 @@
-﻿<include file="Home:path" />
+﻿<include file="Home:banner" />
+<include file="Home:path" />
 
     <!-- news -->
-    <div class="news">
+    <div class="news common">
         <div class="container">
             <div class="row">
-                <div class="content">
+                <div class="content ipd50 clearfix">
+                    <div class="list col-md-9">
 <volist name="list" id="r" listorder="desc">
-                    <!-- start -->
-                    <div class="list clearfix">
-                        <div class="imgs col-lg-6 col-md-6 col-sm-6">
-                            <div class="box-img">
-                                <a  href="{$r.url}" title="{$r.title}"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                <img src="{$r.thumb}" alt="{$r.title}">
+                            <a  href="{$r.url}" title="{$r.title}" class="clearfix">
+                            <div class="col-sm-6">
+                                <div class="box-img">
+                                    <img src="{$r.thumb}" alt="{$r.title}">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="txt col-lg-6 col-md-6 col-sm-6">
-                            <a  href="{$r.url}" title="{$r.title}">
-                                <div class="data"><i class="fa fa-calendar-check-o"></i> {$r.createtime|toDate=###,'d'} {$r.createtime|toDate=###,'M'} {$r.createtime|toDate=###,'Y'} </div>
-                                <h5>{$r.title|str_cut=###,40,'...'}</h5>
-<!--                                <div class="time"><i class="fa fa-bookmark"></i> category</div>-->
-                                <p>{$r.description|str_cut=###,180,'...'}</p>
-                                <span>Read More</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-                    <!-- end -->
+                            <div class="txt col-sm-6">
+                                <h4>{$r.title|str_cut=###,40,'...'}</h4>
+                                <div class="mate">
+                                    <!--<span> <i class="iconfont icon-user"></i> Digood</span>-->
+                                    <span><i class="iconfont  icon-clock"></i>{$r.createtime|toDate=###,'d'} {$r.createtime|toDate=###,'M'} {$r.createtime|toDate=###,'Y'}</span>
+                                </div>
+                                <p>
+                                    {$r.miaoshu|str_cut=###,180,'...'}
+                                </p>
+                                <div class="ns-btn">View More</div>
+                            </div>
+                        </a>
 </volist>
-
-                    <!--分页-->
-                     <div class="row" style="margin: 3% 0 5% 0">
+                        
+                        <!-- 分页按钮-->
+                        <div class="row" style="margin: 3% 0">
                             <div class="col-xs-12 text-center pagingClick">
                                 {$pages}
                             </div>
-                        </div> 
+                        </div>
+                    </div>
+
+                    <div class="common-nav col-md-3">
+                        <include file="Home:left" />
+                    </div>
                 </div>
-
+                <!-- Recommend Read -->
+                <div class="read">
+                    <h4>Recommend Read</h4>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <YP:list name='Article' order="listorder desc" catid="$catid" limit="5" id="r" field="title,thumb,url,miaoshu,createtime">
+                            <div class="swiper-slide">
+                            <a  href="{$r.url}" title="{$r.title}">
+                                    <div class="box-img">
+                                        <img src="{$r.thumb}" alt="{$r.title}">
+                                    </div>
+                                    <h5>
+                                       {$r.title|str_cut=###,40,'...'}
+                                    </h5>
+                                    <div class="mate">
+                                        <span><i class="iconfont icon-bookmark"></i>News</span>
+                                        <span><i class="iconfont icon-clock"></i>{$r.createtime|toDate=###,'d'} {$r.createtime|toDate=###,'M'} {$r.createtime|toDate=###,'Y'}</span>
+                                    </div>
+                                    <p>
+                                       {$r.miaoshu|str_cut=###,180,'...'}
+                                    </p>
+                                </a>
+                            </div>
+                           </YP:list> 
+                           
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </div>
-    
+
+    <!-- footer -->
+   

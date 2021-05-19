@@ -13,10 +13,10 @@
                 <div class="re_box">
                     <div class="re_t">
                         <img src="{$r.thumb}">
-                        <a href="{$r.download}" class="re_a" target="_blank"><span class="re_s1"><img src="__PUBLIC__/www/images/r2.png"></span></a>
+                        <a href="{$r.download}" download class="re_a" target="_blank"><span class="re_s1"><img src="__PUBLIC__/www/images/r2.png"></span></a>
                     </div>
                     <div class="re_p">
-                        {$r.title}
+                        {$r.title|str_cut=###,40,'...'}
                     </div>
                 </div>
             </li>

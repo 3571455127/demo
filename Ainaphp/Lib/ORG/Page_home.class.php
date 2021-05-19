@@ -103,7 +103,7 @@ function is_mobile() {
 		  $output .='</div>';
 		}else{
 		$output = '';
-		$output .= '<a href="'.$this->pageurl($urlrule, $pre_page,$this->parameter).'">Prev</a>';
+		$output .= '<a href="'.$this->pageurl($urlrule, $pre_page,$this->parameter).'">&lt</a>';
 		$show_nums = $this->rollPage*2+1;// 显示页码的个数
 
 		if($this->totalPages <= $show_nums){
@@ -144,7 +144,7 @@ function is_mobile() {
 			}
 		}
 
-		$output .='<a href="'.$this->pageurl($urlrule,$next_page,$this->parameter).'">Next</a>';
+		$output .='<a href="'.$this->pageurl($urlrule,$next_page,$this->parameter).'">&gt</a>';
 		}
 		return $output;
 	}

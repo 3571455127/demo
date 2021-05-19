@@ -2,8 +2,8 @@
     <!--search -->
     <div class="product-search">
         <form action="{:U('Search/index')}" method="GET">
-            <input type="search" placeholder="{:L(Searcha)}..." name="keyword">
             <input type="hidden" name="module" value="Product">
+            <input type="search" placeholder="{:L(Searcha)}..." name="keyword">
             <button type="submit">
                 <i class="iconfont icon-sw_sousuo"></i>
             </button>
@@ -18,14 +18,15 @@
                 <YP:subcat catid="73" id="r" where="listorder asc" limit="100" key="n">
                             <if condition="$r[ismenu]==1">
                     <li>
-                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}" title="{$r.catname}">{$r.catname}
-                            {if $r[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                        <a href="{if $r[child] == 1}javascript:;{else}{$r.url}{/if}" title="{$r.catname}">{$r.catname}</a>
                         {if $r[child] == 1}
+                        <i class="iconfont icon-FontAwesomesortdown"></i>
                         <ul class="second-nav">
                             <YP:subcat catid="$r[id]" id="rs">
                                 <li>
-                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}" title="{$rs.catname}">{$rs.catname} {if $rs[child] == 1}<i class="iconfont icon-FontAwesomesortdown"></i>{/if}</a>
+                                    <a href="{if $rs[child] == 1}javascript:;{else}{$rs.url}{/if}" title="{$rs.catname}">{$rs.catname}</a>
                                     {if $rs[child] == 1}
+                                    <i class="iconfont icon-FontAwesomesortdown"></i>
                                     <ul class="three_nav">
                                         <YP:subcat catid="$rs[id]" id="rss">
                                             <li><a href="{$rss.url}" title="{$rss.catname}">{$rss.catname}</a></li>
@@ -87,7 +88,7 @@
                     <div class="box-img">
                         <img src="{$r.thumb}" alt="{$r.title}">
                     </div>
-                    <p>{$r.title|str_cut=###,25}</p>
+                    <h2>{$r.title|str_cut=###,25}</h2>
                 </a>
                 <!-- end -->
             </YP:list>

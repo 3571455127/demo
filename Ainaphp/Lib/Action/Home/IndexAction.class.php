@@ -53,6 +53,20 @@ $listRowsstart = ($ep-1)*$listRows;
 $limit = "$listRowsstart,$listRows";
 $fields[] = 'id';
 $fieldsval[] = 'id';
+
+if(!$_GET['status']){
+$where['status'] = array('in','0,1');
+}
+$count = M($M)->where($where)->count();
+if(!$count){
+//$title = 'testhuizhuan';
+$fields = array( 'NONE');
+$fieldsval = array( '暂无数据');
+$data = [[ 'NONE' => ''
+            ]];
+getExcel($title,$fields,$fieldsval,$data);
+    exit;
+}
 $data = M($M)->field($fields)->where($where)->order($order)->limit($limit)->select();
 foreach($data as $k=>$v){
     $data[$k]['createtime'] = date("Y-m-d H:i:s",$v['createtime']);
@@ -140,10 +154,7 @@ public function upload(){
 		$mod = M("message");
 		//$_POST = get_safe_replace($_POST);
 //                print_r($_POST);
-                if($_FILES['files']['name']){
-   $files = $this->upload();               
-$_POST['files'] = $files['filepath'];
-                }
+
             //required=1 field moduleid=7 必填字段
                 $fields = M('field')->field('field')->where(array('moduleid'=>7,'required'=>1))->select();
                 $fields2 = array();
@@ -158,15 +169,19 @@ $_POST['files'] = $files['filepath'];
                         if(!$v){
                             $this->error("Error of inquiry information！"); 
                         }
+                        if($k=='email' && !filter_var($v, FILTER_VALIDATE_EMAIL)){
+                            $this->error("Error of inquiry information！"); 
+                        }
                     }
                 }
             //屏蔽关键字
-            $shield = M('config')->where(array('lang'=>$_POST['lang'],'varname'=>'shield'))->getField('value');
+                $lang = $_POST['lang']?$_POST['lang']:0;
+            $shield = M('config')->where(array('lang'=>$lang,'varname'=>'shield'))->getField('value');
             $shieldarr = explode(' ',$shield);
             unset($_POST['lang']);
             foreach($shieldarr as $key=>$val){
                    foreach($_POST as $k=>$v){
-                       if(stristr(strtolower($v), strtolower($val))) { 
+                       if(stristr(strtolower($v), strtolower($val)) && $k!='forward') { 
                             $this->error("Error of inquiry information！"); 
                            }
                    }
@@ -315,8 +330,175 @@ function CopyProduct(){
                 }
 		exit;
 	}
+        
+     function inputexcel(){
+//http://lubake.com/index.php?g=Home&a=inputexcel
+//exit;
+ if(!empty($_FILES)){
+
+     import("@.ORG.UploadFile");
+        $upload = new UploadFile();
+		//$upload->supportMulti = false;
+        //设置上传文件大小
+        $upload->maxSize = $this->Config['attach_maxsize'];
+		$upload->autoSub = true;
+		$upload->subType = 'date';
+		$upload->dateFormat = 'Ym';
+        //设置上传文件类型
+        $upload->allowExts = explode(',', $this->Config['attach_allowext']);
+        //设置附件上传目录
+        $upload->savePath = UPLOAD_PATH;
+		 //设置上传文件规则
+        $upload->saveRule = uniqid;
 
 
+        //删除原图
+        $upload->thumbRemoveOrigin = true;
+        if (!$upload->upload()) {
+			$this->ajaxReturn(0,$upload->getErrorMsg(),0);
+        } else {
+            //取得成功上传的文件信息
+            $uploadList = $upload->getUploadFileInfo();
+$file = __ROOT__.substr($uploadList[0]['savepath'].strtolower($uploadList[0]['savename']),1);
 
+
+//        $file = '/Uploads/202104/6076b3c76c846.xls';
+//                        echo $file;
+                        $file = '.'.$file;
+        if(!file_exists($file))
+        {
+            die('文件不存在');
+        }
+import("@.ORG.PHPExcel");
+        //获取文件类型
+        $file_suffix = pathinfo($file)['extension'];
+        //设置模板根据不同的excel版本
+        $excel_temple = array('xls'=>'Excel5','xlsx'=>'Excel2007');
+        $objReader = PHPExcel_IOFactory::createReader($excel_temple[$file_suffix]);//配置成2003版本，因为office版本可以向下兼容
+        $objPHPExcel = $objReader->load($file,$encode='utf-8');//$file 为解读的excel文件
+        $sheet = $objPHPExcel->getSheet(0);
+$allColumn = $sheet->getHighestColumn();// 获取总列数
+$allRow = $sheet->getHighestRow();// 获取总行数
+$sheetnames = $objPHPExcel->getSheetNames();
+$sheetname = $sheetnames[0];
+//print_r($s[0]);exit;
+        $file_name = $sheetname;
+        $houzhui = substr(strrchr($file_name, '.'), 1);
+        $file_name = basename($file_name,".".$houzhui);
+        $mid = (int)substr($file_name, -1);
+//        echo $mid;
+        if(!is_int($mid)){
+            die('excel表格式不对！');
+        }
+        $file_name = substr($file_name, 0,(strlen($file_name)-1));
+        $table = C('DB_PREFIX').strtolower($file_name);
+        $table2 = strtolower($file_name);
+//        echo $file_suffix.'<br/>'.$file_name.'<br/>'.$table.'<br/>'.$mid.'<br/>';
+//        exit;
+        $exist = D('')->query("show tables like '$table'");
+//        echo D('')->getLastSql();
+        if(!$exist){
+            die('数据表不存在');
+        }
+//获取表字段
+//$mid = 6;
+$fieldsarr = M('field')->field('field,name')->where("status=1 and moduleid = ".$mid)->order('listorder asc,id asc')->select();
+$fields = array();
+$fieldsval = array();
+foreach($fieldsarr as $key=>$val){
+    if(!in_array($val['field'],array('status','posid','createtime'))){
+    $fields[] = $val['field'];
+    $fieldsval[] = $val['name'];
+    }
 }
+    $fields[] = 'thumb';
+    $fieldsval[] = '代表图片';
+//print_r($fieldsarr);
+//print_r($fields);
+//print_r($fieldsval);
+$data=array();
+//获取表字段
+//echo $allColumn.'/'.$allRow;
+for($k="A";$k<=$allColumn;$k++){// 读取单元格
+    $tableatt[$k]=$objPHPExcel->getActiveSheet()->getCell($k."1")->getValue();
+}
+//print_r($tableatt);
+//效验系统字段，只上系统字段
+foreach($tableatt as $k=>$v){
+    if(!in_array($v,$fields)){
+        unset($tableatt[$k]);
+    }
+}
+//print_r($tableatt);
+for ($i = 4; $i <= $allRow; $i++) {
+foreach($tableatt as $k=>$v){
+$data[$i][$v] =$objPHPExcel->getActiveSheet()->getCell("$k" . $i)->getValue();
+}
+}
+if(!empty($data)){
+
+//处理数据
+    foreach($data as $k=>$v){
+        foreach($v as $k2=>$v2){
+
+            if(preg_match('/^\d*$/',$v2) && !in_array($k2,array('catid','lang'))){
+    //            echo $v2;
+                $data[$k][$k2] = M($table2)->where("id = $v2")->getField($k2);
+            }
+
+            if(!in_array($k2,array('lang'))){
+                $data[$k]['lang'] = APP_LANG?1:0;
+            }
+            if(!$v2){
+                $data[$k][$k2] = '&nbsp;&nbsp;';
+            }
+            
+        }
+        
+            $data[$k]['createtime'] = time();
+            $data[$k]['updatetime'] = time();
+            $data[$k]['userid']  = $module ? $userid : $_SESSION['userid'];
+            $data[$k]['username'] = $module ? $username : $_SESSION['username'];
+    }    
+//print_r($data);exit;
+//添数据
+$i=0;
+$Category = F('Category');
+foreach($data as $k=>$v){
+    if($v['catid']){
+        $id = 0;
+        $id = D($table2)->data($v)->add();
+//        echo D($table2)->getLastSql();
+        if($id){
+        //更新url
+            $cat = $Category[$v['catid']];
+            $v['id'] = $id;
+            $url = geturl($cat,$v,F('Urlrule'));
+            $dataurl['id']= $id;
+            $dataurl['url']= $url[0];
+            D($table2)->save($dataurl);
+            $i++;
+        }
+    }
+}
+//echo $i;
+//$jsondata['str'] = "成功上传{$i}条信息";
+//$this->ajaxReturn($jsondata,L('upload_ok'), '1');
+$str = "成功上传{$i}条信息";
+echo "<script>alert('$str')</script>";
+    }   
+    
+ }
+
+ }else{
+     die('未上传文件'); 
+ }  
+              
+        }    
+        
+        
+        
+}
+
+
 ?>

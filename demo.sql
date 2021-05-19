@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2021-04-02 17:12:08
+Date: 2021-05-19 11:28:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -151,7 +151,7 @@ CREATE TABLE `cosmo_attachment` (
   `uploadip` char(15) NOT NULL DEFAULT '',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=837 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=838 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cosmo_attachment
@@ -268,6 +268,7 @@ INSERT INTO `cosmo_attachment` VALUES ('786', '2', '0', '0', 'Martial-arts-perfo
 INSERT INTO `cosmo_attachment` VALUES ('787', '2', '0', '0', 'Staff-chorus.jpg', '/Uploads/201812/5c25a20002906.jpg', '99679', 'jpg', '1', '0', '2', '1545970176', '120.83.155.3', '0');
 INSERT INTO `cosmo_attachment` VALUES ('788', '2', '0', '0', 'Staff-dance-performance.jpg', '/Uploads/201812/5c25a2008a443.jpg', '161741', 'jpg', '1', '0', '2', '1545970176', '120.83.155.3', '0');
 INSERT INTO `cosmo_attachment` VALUES ('824', '2', '0', '0', 'news1.jpg', '/Uploads/201904/5cab0cc0b2fe4.jpg', '3841319', 'jpg', '1', '0', '4', '1554713792', '40.83.76.20', '0');
+INSERT INTO `cosmo_attachment` VALUES ('837', '4', '0', '0', 'about-recommend1.jpg', '/Uploads/202104/607e72b4dcdc5.jpg', '13741', 'jpg', '1', '1', '2', '1618899636', '127.0.0.1', '0');
 INSERT INTO `cosmo_attachment` VALUES ('836', '230', '0', '0', '5dd2735194d4c.jpg', '/Uploads/201912/5dfc6fb6afa98.jpg', '709285', 'jpg', '1', '0', '2', '1576824758', '127.0.0.1', '0');
 
 -- ----------------------------
@@ -381,14 +382,14 @@ CREATE TABLE `cosmo_category` (
 -- ----------------------------
 -- Records of cosmo_category
 -- ----------------------------
-INSERT INTO `cosmo_category` VALUES ('73', 'PRODUCTS', 'product', '', '0', '6', 'Product', '0', '73,94,95', '0', '', '', '', '1', '0', '0', '0', '', '1', '/product.html', 'list', 'show', '12', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('74', 'ABOUT US', 'about', '', '0', '1', 'Page', '0', '74', '0', '', '', '', '3', '0', '0', '0', '', '0', '/about.html', 'AboutUs', 'AboutUs', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('77', 'PROJECTS', 'cases', '', '0', '4', 'Case', '0', '77', '0', '', '', '', '2', '0', '0', '0', '', '0', '/cases.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('78', 'CONTACT US', 'contact', '', '0', '1', 'Page', '0', '78', '0', '', '', '', '5', '0', '0', '0', '', '0', '/contact.html', 'contact', 'contact', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('94', 'PUNCHING MACHINE', 'punching', 'product/', '73', '6', 'Product', '0,73', '94', '0', 'MOBILE FLIP CHART EASEL SERIES', 'MOBILE FLIP CHART EASEL', 'WEYOUNG MOBILE FLIP CHART EASEL PRODUCTS SERIES', '0', '0', '0', '0', '', '0', '/punching.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('95', 'HYDRAULIC PRESS', 'hydraulic', 'product/', '73', '6', 'Product', '0,73', '95', '0', 'GLASS WHITEBOARD SERIES', 'MOBILE GLASS WHITEBOARD', 'WEYOUNG MOBILE GLASS WHITEBOARD SERIES', '0', '0', '0', '0', '', '0', '/hydraulic.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
+INSERT INTO `cosmo_category` VALUES ('73', 'PRODUCTS', 'product', '', '0', '6', 'Product', '0', '73,94,95', '0', '', '', '', '1', '0', '1', '0', '', '1', '/product.html', 'list', 'show', '12', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
+INSERT INTO `cosmo_category` VALUES ('74', 'ABOUT US', 'about', '', '0', '1', 'Page', '0', '74', '0', '', '', '', '3', '0', '1', '0', '', '0', '/about.html', 'AboutUs', 'AboutUs', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
+INSERT INTO `cosmo_category` VALUES ('77', 'PROJECTS', 'cases', '', '0', '4', 'Case', '0', '77', '0', '', '', '', '2', '0', '1', '0', '', '0', '/cases.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
+INSERT INTO `cosmo_category` VALUES ('78', 'CONTACT US', 'contact', '', '0', '1', 'Page', '0', '78', '0', '', '', '', '5', '0', '1', '0', '', '0', '/contact.html', 'contact', 'contact', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
+INSERT INTO `cosmo_category` VALUES ('94', 'PUNCHING MACHINE', 'punching', 'product/', '73', '6', 'Product', '0,73', '94', '0', 'MOBILE FLIP CHART EASEL SERIES', 'MOBILE FLIP CHART EASEL', 'WEYOUNG MOBILE FLIP CHART EASEL PRODUCTS SERIES', '0', '0', '1', '0', '', '0', '/punching.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
+INSERT INTO `cosmo_category` VALUES ('95', 'HYDRAULIC PRESS', 'hydraulic', 'product/', '73', '6', 'Product', '0,73', '95', '0', 'GLASS WHITEBOARD SERIES', 'MOBILE GLASS WHITEBOARD', 'WEYOUNG MOBILE GLASS WHITEBOARD SERIES', '0', '0', '1', '0', '', '0', '/hydraulic.html', 'list', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
 INSERT INTO `cosmo_category` VALUES ('103', 'THANKS', 'thanks', '', '0', '1', 'Page', '0', '103', '0', '', '', '', '100', '0', '0', '0', '', '0', '/thanks.html', 'thank', 'thank', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
-INSERT INTO `cosmo_category` VALUES ('108', 'SERVICE', 'service', '', '0', '1', 'Page', '0', '108', '0', '', '', '', '4', '0', '0', '0', '', '0', '/service.html', 'service', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', null, null);
+INSERT INTO `cosmo_category` VALUES ('108', 'SERVICE', 'service', '', '0', '1', 'Page', '0', '108', '0', '', '', '', '4', '0', '1', '0', '', '0', '/service.html', 'service', 'show', '0', '', '0', '0', '0', '0', '0', '0', '0', '', '0', '', '');
 
 -- ----------------------------
 -- Table structure for cosmo_config
@@ -419,7 +420,7 @@ INSERT INTO `cosmo_config` VALUES ('mail_auth', 'AUTH LOGIN验证', '4', '1', '0
 INSERT INTO `cosmo_config` VALUES ('mail_user', '验证用户名', '4', 'yige@fsqhyl.com', '0');
 INSERT INTO `cosmo_config` VALUES ('mail_password', '验证密码', '4', 'VNxW2jYqQDq6ibLn', '0');
 INSERT INTO `cosmo_config` VALUES ('attach_maxsize', '允许上传附件大小', '5', '5200000', '0');
-INSERT INTO `cosmo_config` VALUES ('attach_allowext', '允许上传附件类型', '5', 'jpg,jpeg,gif,png,doc,docx,rar,zip,swf,pdf', '0');
+INSERT INTO `cosmo_config` VALUES ('attach_allowext', '允许上传附件类型', '5', 'jpg,jpeg,gif,png,doc,docx,rar,zip,swf,pdf,xlsx,xls,webp', '0');
 INSERT INTO `cosmo_config` VALUES ('watermark_enable', '是否开启图片水印', '5', '0', '0');
 INSERT INTO `cosmo_config` VALUES ('watemard_text', '水印文字内容', '5', '', '0');
 INSERT INTO `cosmo_config` VALUES ('watemard_text_size', '文字大小', '5', '18', '0');
@@ -550,7 +551,7 @@ CREATE TABLE `cosmo_field` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `issystem` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cosmo_field
@@ -566,7 +567,7 @@ INSERT INTO `cosmo_field` VALUES ('8', '2', 'description', 'SEO简介', '', '0',
 INSERT INTO `cosmo_field` VALUES ('9', '2', 'content', '内容', '', '0', '0', '0', '', '', '', 'editor', 'array (\n  \'toolbar\' => \'full\',\n  \'default\' => \'\',\n  \'height\' => \'\',\n  \'show_add_description\' => \'1\',\n  \'show_auto_thumb\' => \'1\',\n  \'showpage\' => \'1\',\n  \'enablekeylink\' => \'0\',\n  \'replacenum\' => \'\',\n  \'enablesaveimage\' => \'0\',\n  \'flashupload\' => \'1\',\n  \'alowuploadexts\' => \'\',\n)', '1', '', '9', '1', '1');
 INSERT INTO `cosmo_field` VALUES ('10', '2', 'createtime', '发布时间', '', '1', '0', '0', '', '', '', 'datetime', '', '1', '3,4', '10', '1', '1');
 INSERT INTO `cosmo_field` VALUES ('11', '2', 'posid', '推荐位', '', '0', '0', '0', '', '', '', 'posid', '', '1', '3,4', '11', '1', '1');
-INSERT INTO `cosmo_field` VALUES ('12', '2', 'template', '模板', '', '0', '0', '0', '', '', '', 'template', '', '1', '3,4', '13', '1', '1');
+INSERT INTO `cosmo_field` VALUES ('12', '2', 'template', '模板', '', '0', '0', '0', '', '', '', 'template', '', '1', '3,4', '13', '0', '1');
 INSERT INTO `cosmo_field` VALUES ('13', '2', 'status', '状态', '', '0', '0', '0', '0', '', '', 'radio', 'array (\n  \\\'options\\\' => \\\'发布|1\r\n暂停发布|0\\\',\n  \\\'fieldtype\\\' => \\\'tinyint\\\',\n  \\\'numbertype\\\' => \\\'1\\\',\n  \\\'labelwidth\\\' => \\\'75\\\',\n  \\\'default\\\' => \\\'1\\\',\n)', '1', '', '14', '1', '1');
 INSERT INTO `cosmo_field` VALUES ('14', '2', 'hits', '点击次数', '', '0', '0', '8', '', '', '', 'number', 'array (\n  \'size\' => \'5\',\n  \'numbertype\' => \'1\',\n  \'decimaldigits\' => \'0\',\n  \'default\' => \'\',\n)', '1', '', '12', '0', '0');
 INSERT INTO `cosmo_field` VALUES ('15', '3', 'name', '网站名称', '', '1', '2', '50', '', '', '', 'text', 'array (\n  \'size\' => \'40\',\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '1', '', '1', '1', '0');
@@ -668,6 +669,7 @@ INSERT INTO `cosmo_field` VALUES ('148', '12', 'posid', '推荐位', '', '0', '0
 INSERT INTO `cosmo_field` VALUES ('149', '12', 'template', '模板', '', '0', '0', '0', '', '', '', 'template', '', '1', '3,4', '98', '0', '1');
 INSERT INTO `cosmo_field` VALUES ('150', '12', 'status', '状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'发布|1\r\n定时发布|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '3,4', '99', '1', '1');
 INSERT INTO `cosmo_field` VALUES ('151', '12', 'videourl', '视频地址', '', '0', '0', '0', '0', '', '', 'text', 'array (\n  \\\'size\\\' => \\\'55\\\',\n  \\\'default\\\' => \\\'\\\',\n  \\\'ispassword\\\' => \\\'0\\\',\n  \\\'fieldtype\\\' => \\\'varchar\\\',\n)', '0', '', '0', '1', '0');
+INSERT INTO `cosmo_field` VALUES ('152', '6', 'guige', '规格属性', '', '0', '0', '0', '0', '', '', 'editor', 'array (\n  \\\'edittype\\\' => \\\'kindeditor\\\',\n  \\\'toolbar\\\' => \\\'full\\\',\n  \\\'default\\\' => \\\'\\\',\n  \\\'height\\\' => \\\'\\\',\n  \\\'show_add_description\\\' => \\\'0\\\',\n  \\\'show_auto_thumb\\\' => \\\'0\\\',\n  \\\'showpage\\\' => \\\'0\\\',\n  \\\'enablekeylink\\\' => \\\'0\\\',\n  \\\'replacenum\\\' => \\\'\\\',\n  \\\'enablesaveimage\\\' => \\\'0\\\',\n  \\\'flashupload\\\' => \\\'1\\\',\n  \\\'alowuploadexts\\\' => \\\'\\\',\n  \\\'alowuploadlimit\\\' => \\\'\\\',\n)', '0', '', '4', '1', '0');
 
 -- ----------------------------
 -- Table structure for cosmo_history
@@ -801,7 +803,7 @@ CREATE TABLE `cosmo_log` (
   `time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`,`time`)
-) ENGINE=MyISAM AUTO_INCREMENT=514 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=528 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cosmo_log
@@ -1034,6 +1036,20 @@ INSERT INTO `cosmo_log` VALUES ('510', '0', '0', 'admin', '登录成功', '127.0
 INSERT INTO `cosmo_log` VALUES ('511', '0', '0', 'admin', '登录成功', '127.0.0.1', '1616664152');
 INSERT INTO `cosmo_log` VALUES ('512', '0', '0', 'admin', '登录成功', '127.0.0.1', '1617260698');
 INSERT INTO `cosmo_log` VALUES ('513', '0', '0', 'admin', '登录成功', '127.0.0.1', '1617345780');
+INSERT INTO `cosmo_log` VALUES ('514', '0', '0', 'admin', '登录成功', '127.0.0.1', '1618390160');
+INSERT INTO `cosmo_log` VALUES ('515', '0', '0', 'admin', '登录成功', '127.0.0.1', '1618564738');
+INSERT INTO `cosmo_log` VALUES ('516', '0', '0', 'admin', '登录成功', '127.0.0.1', '1618800542');
+INSERT INTO `cosmo_log` VALUES ('517', '1', '0', 'admin', '密码错误:cosmo0321!', '127.0.0.1', '1618899557');
+INSERT INTO `cosmo_log` VALUES ('518', '1', '0', 'admin', '密码错误:cosmo0321!', '127.0.0.1', '1618899570');
+INSERT INTO `cosmo_log` VALUES ('519', '1', '0', 'admin', '密码错误:yige#159#', '127.0.0.1', '1618899587');
+INSERT INTO `cosmo_log` VALUES ('520', '0', '0', 'admin', '登录成功', '127.0.0.1', '1618899604');
+INSERT INTO `cosmo_log` VALUES ('521', '1', '0', 'admin', '密码错误:cosmo0321!', '127.0.0.1', '1619088217');
+INSERT INTO `cosmo_log` VALUES ('522', '1', '0', 'admin', '密码错误:cosmo0321!', '127.0.0.1', '1619088225');
+INSERT INTO `cosmo_log` VALUES ('523', '0', '0', 'admin', '登录成功', '127.0.0.1', '1619088235');
+INSERT INTO `cosmo_log` VALUES ('524', '0', '0', 'admin', '登录成功', '127.0.0.1', '1619416921');
+INSERT INTO `cosmo_log` VALUES ('525', '0', '0', 'admin', '登录成功', '127.0.0.1', '1620464598');
+INSERT INTO `cosmo_log` VALUES ('526', '0', '0', 'admin', '登录成功', '127.0.0.1', '1620632341');
+INSERT INTO `cosmo_log` VALUES ('527', '0', '0', 'admin', '登录成功', '127.0.0.1', '1620640794');
 
 -- ----------------------------
 -- Table structure for cosmo_mailbox
@@ -1101,7 +1117,7 @@ INSERT INTO `cosmo_menu` VALUES ('16', '3', 'Module', '', '', '1', '1', '0', '�
 INSERT INTO `cosmo_menu` VALUES ('17', '3', 'Category', '', '', '1', '1', '0', '页面管理', '页面管理', '1');
 INSERT INTO `cosmo_menu` VALUES ('18', '16', 'Module', 'add', '', '1', '1', '0', '添加模型', '', '0');
 INSERT INTO `cosmo_menu` VALUES ('19', '17', 'Category', 'add', '', '1', '1', '0', '添加栏目', '', '0');
-INSERT INTO `cosmo_menu` VALUES ('20', '3', 'Article', '', '', '1', '1', '0', '文章管理', '', '2');
+INSERT INTO `cosmo_menu` VALUES ('20', '3', 'Article', '', '', '1', '1', '0', '文章管理', '', '3');
 INSERT INTO `cosmo_menu` VALUES ('21', '20', 'Article', 'add', '', '1', '1', '0', '添加文章', '', '0');
 INSERT INTO `cosmo_menu` VALUES ('23', '2', 'Posid', '', '', '1', '1', '0', '推荐位管理', '', '0');
 INSERT INTO `cosmo_menu` VALUES ('24', '23', 'Posid', 'add', '', '1', '1', '0', '添加推荐位', '', '0');
@@ -1140,11 +1156,11 @@ INSERT INTO `cosmo_menu` VALUES ('77', '1', 'Slide', 'index', '', '1', '1', '0',
 INSERT INTO `cosmo_menu` VALUES ('78', '77', 'Slide', 'add', '', '1', '1', '0', '添加幻灯片', '', '0');
 INSERT INTO `cosmo_menu` VALUES ('83', '1', 'Log', 'index', '', '1', '1', '0', '后台登陆日志', '', '83');
 INSERT INTO `cosmo_menu` VALUES ('84', '1', 'Config', '', '', '1', '1', '0', '站点配置', '', '2');
-INSERT INTO `cosmo_menu` VALUES ('85', '3', 'Case', 'index', '', '1', '1', '0', '案例管理', '', '9');
+INSERT INTO `cosmo_menu` VALUES ('85', '3', 'Case', 'index', '', '1', '1', '0', '案例管理', '', '4');
 INSERT INTO `cosmo_menu` VALUES ('86', '85', 'Case', 'add', '', '1', '1', '0', '添加信息', '', '9');
-INSERT INTO `cosmo_menu` VALUES ('87', '3', 'Jobs', 'index', '', '1', '1', '0', '招聘管理', '', '9');
+INSERT INTO `cosmo_menu` VALUES ('87', '3', 'Jobs', 'index', '', '1', '1', '0', '招聘管理', '', '99');
 INSERT INTO `cosmo_menu` VALUES ('88', '87', 'Jobs', 'add', '', '1', '1', '0', '添加信息', '', '9');
-INSERT INTO `cosmo_menu` VALUES ('89', '3', 'Product', 'index', '', '1', '1', '0', '产品管理', '', '9');
+INSERT INTO `cosmo_menu` VALUES ('89', '3', 'Product', 'index', '', '1', '1', '0', '产品管理', '', '2');
 INSERT INTO `cosmo_menu` VALUES ('90', '89', 'Product', 'add', '', '1', '1', '0', '添加信息', '', '9');
 INSERT INTO `cosmo_menu` VALUES ('91', '3', 'Message', 'index', '', '1', '1', '0', '留言管理', '', '9');
 INSERT INTO `cosmo_menu` VALUES ('92', '91', 'Message', 'add', '', '1', '1', '0', '添加信息', '', '9');
@@ -1217,7 +1233,7 @@ CREATE TABLE `cosmo_module` (
 -- Records of cosmo_module
 -- ----------------------------
 INSERT INTO `cosmo_module` VALUES ('1', '单页模型', 'Page', '单页模型', '1', '1', '0', '*', '', '0', '1', '', '0');
-INSERT INTO `cosmo_module` VALUES ('2', '文章管理', 'Article', '新闻文章', '1', '1', '1', 'id,catid,url,title,username,hits,keywords,description,thumb,createtime,status,listorder,miaoshu', '', '0', '1', '', '0');
+INSERT INTO `cosmo_module` VALUES ('2', '文章管理', 'Article', '新闻文章', '1', '1', '1', '*', '', '0', '1', '', '0');
 INSERT INTO `cosmo_module` VALUES ('3', '友情链接', 'Link', '友情链接', '2', '0', '0', '*', '', '0', '1', '', '0');
 INSERT INTO `cosmo_module` VALUES ('4', '案例管理', 'Case', '案例', '1', '0', '0', '*', '', '0', '1', '', '0');
 INSERT INTO `cosmo_module` VALUES ('5', '招聘管理', 'Jobs', '招聘', '1', '0', '0', '*', '', '0', '1', '', '0');
@@ -1341,7 +1357,6 @@ CREATE TABLE `cosmo_online` (
 -- ----------------------------
 -- Records of cosmo_online
 -- ----------------------------
-INSERT INTO `cosmo_online` VALUES ('f2d1ca2e568749658b1488c81bcae2f3', '0', '', '127.0.0.1', '1617345772', '4');
 
 -- ----------------------------
 -- Table structure for cosmo_page
@@ -1438,6 +1453,7 @@ CREATE TABLE `cosmo_product` (
   `copyid` int(11) NOT NULL DEFAULT '0' COMMENT '复制产品id',
   `seotitle` text NOT NULL,
   `miaoshu` text NOT NULL,
+  `guige` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `status` (`id`,`status`,`listorder`),
   KEY `catid` (`id`,`catid`,`status`),
@@ -1528,7 +1544,7 @@ DROP TABLE IF EXISTS `cosmo_slide_data`;
 CREATE TABLE `cosmo_slide_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fid` tinyint(3) unsigned DEFAULT '0',
-  `title` varchar(30) NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
   `pic` varchar(150) NOT NULL DEFAULT '',
   `link` varchar(150) NOT NULL DEFAULT '',
   `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -1622,7 +1638,7 @@ CREATE TABLE `cosmo_user` (
 -- Records of cosmo_user
 -- ----------------------------
 INSERT INTO `cosmo_user` VALUES ('4', '2', 'demo', 'bf1ce60ba6c0b5b1ed2936ac9c8753627cd1ef98', 'osd@demo.cn', '', '', '', '1', '', '', '', '', '', '141', '1540782434', '0', '1561964411', '61.140.27.219', '27.45.146.101', '1', '0.00', '0', '');
-INSERT INTO `cosmo_user` VALUES ('2', '1', 'admin', 'fabaa88b6979f99875d10d053a1b128e90920d98', 'info@cosmoing.com', 'admin', '', '', '1', '', '', '', '', '', '105', '1502869825', '0', '1617345780', '122.97.176.27', '127.0.0.1', '1', '0.00', '0', '');
+INSERT INTO `cosmo_user` VALUES ('2', '1', 'admin', '805f5b5c60ec5922e5c84c2966b5b7e6fcced2cd', 'info@cosmoing.com', 'admin', '', '', '1', '', '', '', '', '', '114', '1502869825', '1618800588', '1620640794', '122.97.176.27', '127.0.0.1', '1', '0.00', '0', '');
 
 -- ----------------------------
 -- Table structure for cosmo_video

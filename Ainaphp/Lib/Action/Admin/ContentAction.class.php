@@ -38,8 +38,28 @@ class ContentAction extends AdminbaseAction
 	public function add()
     {
 		$vo['catid']= intval($_GET['catid']);
-		$form=new Form($vo);
+//		$form=new Form($vo);
 		$form->isadmin=1;
+                		$id = $_REQUEST ['id'];
+		if(MODULE_NAME=='Page'){
+					$Page=D('Page');
+					$p = $Page->find($id);
+					if(empty($p)){
+					$data['id']=$id;
+					$data['title'] = $this->categorys[$id]['catname'];
+					$data['keywords'] = $this->categorys[$id]['keywords'];
+					$Page->add($data);
+					}
+		}
+		$vo = $this->dao->getById ( $id );
+		$vo['content'] = htmlspecialchars($vo['content']);
+        $data = M("Article")->where("catid = ".$vo['catid'])->order("id asc")->limit(1)->find();
+        $datas = getimagesize($this->Config['site_url'].'/'.$data['thumb']);
+ 		$form=new Form($vo);
+
+
+		$this->assign ( 'vo', $vo );
+        $this->assign ( 'datas', $datas );
 		$this->assign ( 'form', $form );
 		$template =  file_exists(THEME_PATH.MODULE_NAME.'_edit.html') ? MODULE_NAME.':edit' : 'Content:edit';
 		$this->display ( $template);

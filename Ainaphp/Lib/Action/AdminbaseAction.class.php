@@ -254,8 +254,10 @@ class AdminbaseAction extends Action
                             if($v['ip'] && !$v['ipdiqu']){
                                 $ipdiqu = '';
                                 $ipdiqu = getAddressFromIp($v['ip']);
+                                if($ipdiqu){
                                 $voList[$k]['title'] = "[".$ipdiqu."]".$v['title'];
                                 M("message")->where(array('id'=>$v['id']))->save(array('ipdiqu'=>$ipdiqu,'title'=>$voList[$k]['title']));
+                                }
                             }
                         }
 			$map[C('VAR_PAGE')]='{$page}';

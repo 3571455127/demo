@@ -16,7 +16,7 @@
     <meta name="Robots" content="all">
     <link rel="alternate" href="https://www.yige-tech.com/" hreflang="en" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <title>{if MODULE_NAME != 'Index'}{if $seotitle}{$seotitle}{else}{$seo_title}{/if}{else}{$site_name}{/if}</title>
+    <title style="text-transform: capitalize;">{if MODULE_NAME != 'Index'}{if $seotitle}{$seotitle}{else}{$seo_title}{/if}{else}{$site_name}{/if}</title>
     <!-- css -->
     <link rel="stylesheet" href="__PUBLIC__/www/css/iconfont-yizumi.css">
     <link rel="stylesheet" href="__PUBLIC__/www/css/bootstrap.min.css">
@@ -38,11 +38,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/index.php"><img alt="logo" src="__PUBLIC__/www/images/logo.png"></a>
+                    <a class="navbar-brand" href="/" title="{$seo_title}"><img alt="logo" src="__PUBLIC__/www/images/logo.png"></a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-left">
-                        <li class="{if MODULE_NAME == 'Index'}active{/if}"><a href="/index.php">{:L(HOME_FONT)}</a></li>
+                        <li class="{if MODULE_NAME == 'Index'}active{/if}"><a href="/" title="{$seo_title}">{:L(HOME_FONT)}</a></li>
                         <!--                        <li>
                             <a href="product-list.html">Company </a>
                         </li>
@@ -52,10 +52,10 @@
                         <YP:subcat catid="0" id="r" field="*" where="listorder asc" limit="100" key="n">
                             <if condition="$r[ismenu]==1">
                                 <li class="{if $bcid==$r[id]}active{/if}">
-                                    <a href="{$r.url}" title="{$r.catname}">{$r.catname}
+                                    <a href="{$r.url}" title="{$r.catname}">{$r.catname}</a>
                                         {if in_array($r[id],array(114,121))}<i
                                             class="iconfont icon-angle-down"></i>{/if}
-                                    </a>
+                                    
                                     {if in_array($r[id],array(114,121))}
                                     {if $r[child] == 1}
                                     <ul class="second-nav">
@@ -114,7 +114,7 @@
                 <div class="nav_right">
                     <div class="nav_rin">
                         <ul class="menu_ul">
-                            <li><a href="/index.php" title="">{:L(HOME_FONT)}</a></li>
+                            <li><a href="/" title="{$seo_title}">{:L(HOME_FONT)}</a></li>
                             <YP:subcat catid="0" id="r" field="*" where="listorder asc" limit="100" key="n">
                                 <if condition="$r[ismenu]==1">
                                     <li class="{if $bcid==$r[id]}active{/if} menu_li">

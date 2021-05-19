@@ -26,7 +26,7 @@
             <h4>LEAVE A MESSAGE</h4>
             <form name="form" method="post" action="index.php?g=Home&a=message" id="contact_form" >
                     <input name="forward" type="hidden" value="{php echo 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];}"/>
-            <input type="hidden" name="lang" value="{$Lang}">
+            <input type="hidden" name="lang" value="{$langid}">
             <span style="marg-right:5px;color:red;font-weight:700;">*</span>&nbsp;<input type="text" name="name" id="name" placeholder="name">
             <span style="marg-right:5px;color:red;font-weight:700;">*</span>&nbsp;<input type="text" name="phone" id="phone" placeholder="Phone">
             <span style="marg-right:5px;color:red;font-weight:700;">*</span>&nbsp;<input type="text" name="email" id="mail" placeholder="Email">

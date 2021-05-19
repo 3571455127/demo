@@ -22,7 +22,21 @@
   \\\'rows\\\' => \\\'4\\\',
   \\\'cols\\\' => \\\'55\\\',
   \\\'default\\\' => \\\'\\\',
-)', 'ispost' => '1', 'unpostgroup' => '', 'listorder' => '3', 'status' => '1', 'issystem' => '0', ), 'content' => array ( 'id' => '46', 'moduleid' => '6', 'field' => 'content', 'name' => '内容', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '', 'errormsg' => '', 'class' => '', 'type' => 'editor', 'setup' => 'array (
+)', 'ispost' => '1', 'unpostgroup' => '', 'listorder' => '3', 'status' => '1', 'issystem' => '0', ), 'guige' => array ( 'id' => '152', 'moduleid' => '6', 'field' => 'guige', 'name' => '规格属性', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '0', 'errormsg' => '', 'class' => '', 'type' => 'editor', 'setup' => 'array (
+  \\\'edittype\\\' => \\\'kindeditor\\\',
+  \\\'toolbar\\\' => \\\'full\\\',
+  \\\'default\\\' => \\\'\\\',
+  \\\'height\\\' => \\\'\\\',
+  \\\'show_add_description\\\' => \\\'0\\\',
+  \\\'show_auto_thumb\\\' => \\\'0\\\',
+  \\\'showpage\\\' => \\\'0\\\',
+  \\\'enablekeylink\\\' => \\\'0\\\',
+  \\\'replacenum\\\' => \\\'\\\',
+  \\\'enablesaveimage\\\' => \\\'0\\\',
+  \\\'flashupload\\\' => \\\'1\\\',
+  \\\'alowuploadexts\\\' => \\\'\\\',
+  \\\'alowuploadlimit\\\' => \\\'\\\',
+)', 'ispost' => '0', 'unpostgroup' => '', 'listorder' => '4', 'status' => '1', 'issystem' => '0', ), 'content' => array ( 'id' => '46', 'moduleid' => '6', 'field' => 'content', 'name' => '内容', 'tips' => '', 'required' => '0', 'minlength' => '0', 'maxlength' => '0', 'pattern' => '', 'errormsg' => '', 'class' => '', 'type' => 'editor', 'setup' => 'array (
   \'toolbar\' => \'full\',
   \'default\' => \'\',
   \'height\' => \'\',

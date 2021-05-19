@@ -92,7 +92,7 @@ class SearchAction extends BaseAction
 			$page->urlrule =  URL('Home-Search/index',$_REQUEST);
 			$pages = $page->show();
 			$field =  $this->module[$cat['moduleid']]['listfields'];
-			$field =  $field ? $field : 'id,catid,userid,url,username,title,title_style,keywords,description,thumb,createtime,hits';
+			$field =  $field ? $field : '*';
 			$list = $this->dao->field($field)->where($where)->order('id desc')->limit($page->firstRow . ',' . $page->listRows)->select();
 			$this->assign('pages',$pages);
 			$this->assign('list',$list);
